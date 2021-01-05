@@ -1,0 +1,2 @@
+C:\Users\h\source\repos\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe
+C:\Users\h\source\repos\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.pdb

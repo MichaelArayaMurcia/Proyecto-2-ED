@@ -1,2 +1,42 @@
 ﻿  Main.cpp
-  ProyectoSFMLGrafos.vcxproj -> C:\Users\h\source\repos\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(41,92): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=int
+          ]
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(41,58): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=int
+          ]
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(42,91): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=int
+          ]
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(42,57): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=int
+          ]
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(43,92): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=int
+          ]
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(43,58): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=int
+          ]
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(44,92): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=int
+          ]
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(44,58): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=int
+          ]
+  ProyectoSFMLGrafos.vcxproj -> C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe

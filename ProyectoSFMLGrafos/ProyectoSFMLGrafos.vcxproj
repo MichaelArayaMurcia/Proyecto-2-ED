@@ -144,6 +144,15 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="arraylist.h" />
+    <ClInclude Include="dlinkedlist.h" />
+    <ClInclude Include="dnode.h" />
+    <ClInclude Include="Grafo.h" />
+    <ClInclude Include="linkedlist.h" />
+    <ClInclude Include="list.h" />
+    <ClInclude Include="NodoGrafo.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

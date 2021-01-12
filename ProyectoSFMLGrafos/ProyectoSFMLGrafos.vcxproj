@@ -151,6 +151,7 @@
     <ClInclude Include="Grafo.h" />
     <ClInclude Include="linkedlist.h" />
     <ClInclude Include="list.h" />
+    <ClInclude Include="node.h" />
     <ClInclude Include="NodoGrafo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

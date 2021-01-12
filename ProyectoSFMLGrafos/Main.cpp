@@ -1,7 +1,11 @@
 #include <SFML/Graphics.hpp>
-//ahhhhhhhhhhhhhhhhhhhhhhhh
-int main()
-{
+#include "Grafo.h"
+#include <iostream>
+#include "arraylist.h"
+//porque no?
+using namespace std;
+int main(){
+    /*
     sf::RenderWindow window(sf::VideoMode(1830, 960), "SFML DOSEN'T works!(Te paras mike).");
     sf::RectangleShape shape(sf::Vector2f(10,10));
     sf::RectangleShape shape2(sf::Vector2f(10, 10));
@@ -54,6 +58,18 @@ int main()
             y_coord += 0.2;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
             window.clear();
+    }*/
+    Grafo* nuevoGrafo = new Grafo(10);
+    ArrayList<ArrayList<NodoGrafo*>*>* lista = nuevoGrafo->retornarListaNodos();
+    for (lista->gotoStart();!lista->atEnd();lista->next()) {
+        
+        ArrayList<NodoGrafo*>* temp = lista->getElement();
+        for (temp->gotoStart(); !temp->atEnd();temp->next()) {
+            
+            NodoGrafo* nodotemp = temp->getElement();
+            cout << nodotemp->returnid() << "\t";
+        }
+        cout << endl;
     }
 
     return 0;

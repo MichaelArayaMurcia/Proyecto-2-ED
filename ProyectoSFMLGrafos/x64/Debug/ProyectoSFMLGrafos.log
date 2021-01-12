@@ -1,26 +1,2 @@
 ﻿  Main.cpp
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(42,92): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
-          with
-          [
-              T=int
-          ]
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(42,58): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
-          with
-          [
-              T=int
-          ]
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(43,91): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
-          with
-          [
-              T=int
-          ]
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(43,57): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
-          with
-          [
-              T=int
-          ]
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(48,27): warning C4305: '+=': truncamiento de 'double' a 'float'
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(50,27): warning C4305: '-=': truncamiento de 'double' a 'float'
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(52,27): warning C4305: '-=': truncamiento de 'double' a 'float'
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(54,27): warning C4305: '+=': truncamiento de 'double' a 'float'
   ProyectoSFMLGrafos.vcxproj -> C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe

@@ -9,7 +9,7 @@ private:
     Dnode<E> *previous;
 
 public:
-    Dnode(E element, Dnode<E> *next = nullptr, Dnode<E> *previous = nullptr){
+    Dnode(E element, Dnode<E> *next, Dnode<E> *previous){
         this->element=element;
         this->next=next;
         this->previous=previous;
@@ -18,6 +18,7 @@ public:
         this->next=next;
         this->previous=previous;
     }
+
     E getElement(){
         return element;
     }

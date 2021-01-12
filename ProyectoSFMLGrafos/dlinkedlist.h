@@ -17,18 +17,19 @@ public:
     Dlinkedlist(){
        current = head = new Dnode<E>();
        head->setNext(tail = new Dnode<E>(nullptr, head));
+       size = 0;
     }
     ~Dlinkedlist(){
         clear();
         delete head; delete tail;
     }
     void insert(E element){
-        current->getnext()->setPrevious(new Dnode<E>(element, current->getNext(), current));
+        current->getNext()->setPrevious(new Dnode<E>(element, current->getNext(), current));
         current->setNext(current->getNext()->getPrevious());
         size++;
     }
     void append(E element){
-        tail->getPrevious->setNext(new Dnode<E>(element, tail, tail->getPrevious()));
+        tail->getPrevious()->setNext(new Dnode<E>(element, tail, tail->getPrevious()));
         tail->setPrevious(tail->getPrevious()->getNext());
         size++;
     }
@@ -41,7 +42,7 @@ public:
         }
         E res = current->getNext()->getElement();
         current->setNext(current->getNext()->getNext());
-        delete current->getNext()->setPrevious();
+        delete current->getNext()->getPrevious();
         current->getNext()->setPrevious(current);
         size--;
         return res;
@@ -64,7 +65,7 @@ public:
         if(current->getNext() == tail){
             throw runtime_error("No current element.");
         }
-        return current->getNext->getElement();
+        return current->getNext()->getElement();
     }
     void gotoStart(){
         current = head;

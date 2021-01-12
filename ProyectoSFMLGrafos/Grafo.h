@@ -10,12 +10,13 @@ private:
 	int cantidadNodos;
 public:
 	Grafo(int tamanoGrafo) {
+		this->cantidadNodos = 0;
 		listasNodos = new ArrayList<ArrayList<NodoGrafo*>*>(tamanoGrafo);
 		int conta = 1;
-		for (listasNodos->gotoStart(); !listasNodos->atEnd();listasNodos->next()) {
+		for (int i = 0; i < tamanoGrafo; i++) {
 			listasNodos->insert(new ArrayList<NodoGrafo*>(tamanoGrafo));
 			ArrayList<NodoGrafo*>* temp = listasNodos->getElement();
-			for (temp->gotoStart(); !temp->atEnd(); temp->next()) {
+			for (int j = 0; j < tamanoGrafo; j++) {
 				temp->append(new NodoGrafo(conta));
 				conta++;
 				cantidadNodos++;

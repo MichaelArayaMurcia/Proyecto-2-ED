@@ -4,6 +4,68 @@
 #include "arraylist.h"
 //porque no?
 using namespace std;
+
+void busquedaProfundidadAux(NodoGrafo* nodoTemp, Dlinkedlist<NodoGrafo>* listaVecinosNoVisitados) {
+    nodoTemp->visitar();
+    //------- Lo del arco -------------------------------------
+
+    //---------------------------------------------------------
+    for (listaVecinosNoVisitados->gotoStart(); listaVecinosNoVisitados->atEnd(); listaVecinosNoVisitados->next()) {
+        NodoGrafo vecinoNoVisitado = listaVecinosNoVisitados->getElement();
+        Dlinkedlist<NodoGrafo>* listaVecinos = vecinoNoVisitado.retornarAdyacentes();
+        Dlinkedlist<NodoGrafo>* listaVecinosNoVisitados = new Dlinkedlist<NodoGrafo>() ;
+        for (listaVecinos->gotoStart(); !listaVecinos->atEnd(); listaVecinos->next()) {
+            NodoGrafo vecino = listaVecinos->getElement();
+
+            if (vecino.retornarVisitado() != false) {
+                listaVecinosNoVisitados->append(vecino);
+            }
+        }
+
+        NodoGrafo* vecinoNoVisitado2 = &vecinoNoVisitado;
+
+        if (listaVecinos->getSize() != 0) {
+            busquedaProfundidadAux(vecinoNoVisitado2, listaVecinosNoVisitados);
+        }
+
+        
+    }
+
+}
+
+void busquedaProfundidad(ArrayList<ArrayList<NodoGrafo*>*>* lista) {
+    for (lista->gotoStart(); !lista->atEnd(); lista->next()) {
+
+        ArrayList<NodoGrafo*>* temp = lista->getElement();
+        for (temp->gotoStart(); !temp->atEnd(); temp->next()) {
+
+            NodoGrafo* nodoTemp = temp->getElement();
+            nodoTemp->visitar();
+            
+            Dlinkedlist<NodoGrafo>* listaVecinos = nodoTemp->retornarAdyacentes();
+            Dlinkedlist<NodoGrafo>* listaVecinosNoVisitados = new Dlinkedlist<NodoGrafo>();
+           
+            for (listaVecinos->gotoStart(); !listaVecinos->atEnd(); listaVecinos->next()) {
+                NodoGrafo vecino = listaVecinos->getElement();
+
+                if (vecino.retornarVisitado() != false) {
+                    listaVecinosNoVisitados->append(vecino);
+                }
+            }
+
+            //----------------- Ya esta lista de lista de vecinos no visitados
+
+
+            busquedaProfundidadAux(nodoTemp , listaVecinosNoVisitados);
+
+        }
+    }
+
+    
+}
+
+
+
 int main(){
     /*
     sf::RenderWindow window(sf::VideoMode(1830, 960), "SFML DOSEN'T works!(Te paras mike).");
@@ -59,7 +121,9 @@ int main(){
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
             window.clear();
     }*/
-    Grafo* nuevoGrafo = new Grafo(10);
+
+
+    Grafo* nuevoGrafo = new Grafo(4);
     ArrayList<ArrayList<NodoGrafo*>*>* lista = nuevoGrafo->retornarListaNodos();
     for (lista->gotoStart();!lista->atEnd();lista->next()) {
         
@@ -71,6 +135,8 @@ int main(){
         }
         cout << endl;
     }
+
+    //busquedaProfundidad(lista);
 
     return 0;
 }

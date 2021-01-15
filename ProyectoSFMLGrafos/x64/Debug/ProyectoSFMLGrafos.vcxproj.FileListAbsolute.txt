@@ -2,3 +2,5 @@ C:\Users\h\source\repos\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe
 C:\Users\h\source\repos\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.pdb
 C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe
 C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.pdb
+C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe
+C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.pdb

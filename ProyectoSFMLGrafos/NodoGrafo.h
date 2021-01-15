@@ -2,12 +2,14 @@
 #ifndef NODOGRAFO_H
 #define NODOGRAFO_H
 #include "dlinkedlist.h"
+#include "NodoArco.h"
 
 using namespace std;
 
 class NodoGrafo{
 private:
 	Dlinkedlist<NodoGrafo>* listaAdyacentes;
+	Dlinkedlist<NodoArco>* listaArcos;
 	int id;
 	bool visitado;
 

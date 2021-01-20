@@ -1,6 +1,9 @@
 #include <iostream>
 #include "Grafo.h"
 #include <string>
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
+
 using namespace std;
 
 int main()
@@ -10,10 +13,10 @@ int main()
 	int filas;
 	int columnas;
 
-	cout << "Ingrese el n�mero de filas ";
+	cout << "Ingrese el numero de filas ";
 	cin >> filas;
 
-	cout << "\nIngrese el n�mero de columnas ";
+	cout << "\nIngrese el numero de columnas ";
 	cin >> columnas;
 
 	int conta = 1;
@@ -95,4 +98,73 @@ int main()
 	cout << "El size es: " << nuevoGrafo.tamano() << endl;
 
 	nuevoGrafo.ListaAdyacencia();
+
+
+	//---------------------------------------------------
+	//---------------------------------------------------
+	//---------------------------------------------------
+
+	// Create the main window
+	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+
+	// Start the game loop
+	while (window.isOpen())
+	{
+		// Process events
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			// Close window: exit
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		//--------- variables para los nodos
+		float posY = 0.f;
+		float posX = 0.f;
+		float conta = 0;
+
+		//--------- variables para las aristas
+		float posAX = 0.f;
+		float posAY = 0.f;
+		float conta2 = 0;
+
+		for (int i = 1; i < filas * columnas + 1; i++) {
+			posX = conta * 60;
+			
+			//----------------- Dibujar los vertices -----------
+			sf::RectangleShape rectangle(sf::Vector2f(120.f, 50.f));
+			rectangle.setSize(sf::Vector2f(30.f, 30.f));
+			rectangle.setPosition(posX, posY);
+			rectangle.setOutlineThickness(1);
+			rectangle.setOutlineColor(sf::Color(0,0,255));
+
+			if (nuevoGrafo.GetVertice(to_string(i)) != NULL) {
+				rectangle.setFillColor(sf::Color(100, 250, 50));
+			}
+			else {
+				rectangle.setFillColor(sf::Color(0, 0, 0));
+			}
+
+			
+			window.draw(rectangle);
+
+			conta += 1;
+
+			if (i % columnas == 0 && i != 0) {
+				posY += 60;
+				conta = 0;
+			}
+		}
+		
+
+		// Clear screen
+		//window.clear();
+		// Draw the sprite
+		//window.draw(sprite);
+		// Draw the string
+		//window.draw(text);
+		// Update the window
+		window.display();
+	}
 }

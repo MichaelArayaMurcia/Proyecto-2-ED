@@ -10,10 +10,10 @@ int main()
 	int filas;
 	int columnas;
 
-	cout << "Ingrese el nï¿½mero de filas ";
+	cout << "Ingrese el número de filas ";
 	cin >> filas;
 
-	cout << "\nIngrese el nï¿½mero de columnas ";
+	cout << "\nIngrese el número de columnas ";
 	cin >> columnas;
 
 	int conta = 1;
@@ -25,7 +25,7 @@ int main()
 			nuevoGrafo.InsertaVertice(to_string(conta));
 			conta += 1;
 		}
-
+		
 	}
 
 	//---------- Poner las aristas de las esquinas ---------------------------

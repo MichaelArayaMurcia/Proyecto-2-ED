@@ -3,8 +3,19 @@
 #include <string>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
+
+void busquedaProfundidadModificada(Grafo nuevoGrafo) {
+	srand(time(NULL));
+	int numeroVertices = nuevoGrafo.tamano();
+	int numeroRandom = rand() % numeroVertices;
+
+	Vertice* primerVertice = nuevoGrafo.GetVertice(to_string(numeroRandom));
+	
+}
 
 int main()
 {
@@ -33,8 +44,14 @@ int main()
 
 	//---------- Poner las aristas de las esquinas ---------------------------
 	//---------- Esquina superior izquierda ----------------------------------
-	nuevoGrafo.InsertaArista(nuevoGrafo.GetVertice(to_string(1)), nuevoGrafo.GetVertice(to_string(1 + 1)), 1);
-	nuevoGrafo.InsertaArista(nuevoGrafo.GetVertice(to_string(1)), nuevoGrafo.GetVertice(to_string(1 + columnas)), 1);
+	Vertice* vertice1 = nuevoGrafo.GetVertice(to_string(1));
+	Vertice* vertice2 = nuevoGrafo.GetVertice(to_string(1 + 1));
+	Vertice* vertice3 = nuevoGrafo.GetVertice(to_string(1 + columnas));
+
+	nuevoGrafo.InsertaArista(vertice1, vertice2, 1);
+	nuevoGrafo.InsertaArista(vertice1, vertice3, 1);
+
+
 	//---------- Esquina superior derecha ------------------------------------
 	nuevoGrafo.InsertaArista(nuevoGrafo.GetVertice(to_string(columnas)) , nuevoGrafo.GetVertice(to_string(columnas - 1)), 1);
 	nuevoGrafo.InsertaArista(nuevoGrafo.GetVertice(to_string(columnas)) , nuevoGrafo.GetVertice(to_string((columnas - 1) + columnas + 1)), 1);
@@ -130,11 +147,11 @@ int main()
 		float conta2 = 0;
 
 		for (int i = 1; i < filas * columnas + 1; i++) {
-			posX = conta * 60;
+			posX = conta * 50;
 			
 			//----------------- Dibujar los vertices -----------
 			sf::RectangleShape rectangle(sf::Vector2f(120.f, 50.f));
-			rectangle.setSize(sf::Vector2f(30.f, 30.f));
+			rectangle.setSize(sf::Vector2f(50.f, 50.f));
 			rectangle.setPosition(posX, posY);
 			rectangle.setOutlineThickness(1);
 			rectangle.setOutlineColor(sf::Color(0,0,255));
@@ -152,7 +169,7 @@ int main()
 			conta += 1;
 
 			if (i % columnas == 0 && i != 0) {
-				posY += 60;
+				posY += 50;
 				conta = 0;
 			}
 		}

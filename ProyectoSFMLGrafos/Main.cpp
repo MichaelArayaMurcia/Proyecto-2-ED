@@ -9,12 +9,29 @@
 using namespace std;
 
 void busquedaProfundidadModificada(Grafo nuevoGrafo) {
-	srand(time(NULL));
+	srand(time(0));
 	int numeroVertices = nuevoGrafo.tamano();
 	int numeroRandom = rand() % numeroVertices;
 
 	Vertice* primerVertice = nuevoGrafo.GetVertice(to_string(numeroRandom));
 	
+}
+
+void PrimModificado(Grafo oldGrafo, int filas, int columnas) {
+	srand(time(0));
+	Grafo grafoResultante = Grafo();
+	int conta = 1;
+	for (int i = 0; i < filas; i++) {
+		for (int j = 0; j < columnas; j++) {
+			grafoResultante.InsertaVertice(to_string(conta));
+			conta += 1;
+		}
+	}
+	int nodoInicial = (rand() % (filas * columnas))+1;
+	Vertice* inicio = oldGrafo.GetVertice(to_string(nodoInicial));
+	oldGrafo.iniciarGrafo(inicio);
+	Vertice* inicioResultante = grafoResultante.GetVertice(to_string(nodoInicial));
+	grafoResultante.iniciarGrafo(inicioResultante);
 }
 
 int main()

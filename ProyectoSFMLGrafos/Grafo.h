@@ -1,9 +1,8 @@
 #ifndef GRAFO_H
 #define GRAFO_H
 #include <iostream>
-#include <queue>
-#include <list>
-#include <stack>
+#include "dlinkedlist.h"
+
 
 using namespace std;
 
@@ -16,10 +15,16 @@ private:
 	Arista* ady;
 	string nombre;
 	bool visitado;
-	list<Vertice*> listaAdyacentes;
+	Dlinkedlist<Vertice*>* listaAdyacentes;
 	friend class Grafo;
 
 public:
+	Vertice() {
+		listaAdyacentes = new Dlinkedlist<Vertice*>();
+	}
+
+	~Vertice() {}
+
 	Vertice* getVerticesig() {
 		return sig;
 	}
@@ -36,7 +41,7 @@ public:
 		return visitado;
 	}
 
-	list<Vertice*> getlistaAdyacentes(){
+	Dlinkedlist<Vertice*>* getlistaAdyacentes(){
 		return listaAdyacentes;
 	}
 
@@ -56,7 +61,7 @@ public:
 		visitado = Valor;
 	}
 
-	list<Vertice*> setlistaAdyacentes(list<Vertice*> otraLista) {
+	Dlinkedlist<Vertice*> setlistaAdyacentes(Dlinkedlist<Vertice*>* otraLista) {
 		listaAdyacentes = otraLista;
 	}
 };

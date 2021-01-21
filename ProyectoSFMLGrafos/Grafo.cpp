@@ -7,12 +7,7 @@ void Grafo::Inicializa()
 
 bool Grafo::Vacio()
 {
-	if(h == NULL){
-		return true;
-	}
-	else {
-		return false;
-	}
+	return h == NULL;
 }
 
 int Grafo::tamano() 

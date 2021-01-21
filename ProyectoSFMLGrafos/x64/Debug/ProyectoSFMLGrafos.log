@@ -1,7 +1,6 @@
 ﻿  Grafo.cpp
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Grafo.cpp(310,6): warning C4101: 'band': variable local sin referencia
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Grafo.cpp(311,6): warning C4101: 'band2': variable local sin referencia
   Main.cpp
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(12,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(12,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(21,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
   Generando código...
-  ProyectoSFMLGrafos.vcxproj -> C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe
+  ProyectoSFMLGrafos.vcxproj -> C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe

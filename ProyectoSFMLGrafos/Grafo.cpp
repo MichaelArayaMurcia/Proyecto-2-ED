@@ -83,7 +83,8 @@ void Grafo::InsertaArista(Vertice *origen, Vertice *destino, int peso)
 		aux->sig = nueva;
 		nueva->ady = destino;
 	}
-
+	
+	origen->insertarArco(nueva);
 
 }
 

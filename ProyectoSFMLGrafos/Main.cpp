@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 #include <time.h>
+#include "dlinkedlist.h"
 
 using namespace std;
 
@@ -32,6 +33,9 @@ void PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 	oldGrafo.iniciarGrafo(inicio);
 	Vertice* inicioResultante = grafoResultante.GetVertice(to_string(nodoInicial));
 	grafoResultante.iniciarGrafo(inicioResultante);
+	Dlinkedlist<Arista*>* listaArcos = new Dlinkedlist<Arista*>();
+	listaArcos = oldGrafo.placeholder();
+
 }
 
 int main()

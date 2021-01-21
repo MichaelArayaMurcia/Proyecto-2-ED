@@ -16,11 +16,13 @@ private:
 	string nombre;
 	bool visitado;
 	Dlinkedlist<Vertice*>* listaAdyacentes;
+	Dlinkedlist<Arista*>* listaArcos;
 	friend class Grafo;
 
 public:
 	Vertice() {
 		listaAdyacentes = new Dlinkedlist<Vertice*>();
+		listaArcos = new Dlinkedlist<Arista*>();
 	}
 
 	~Vertice() {}
@@ -33,6 +35,10 @@ public:
 		return ady;
 	}
 
+	void insertarArco(Arista* nuevoArco) {
+		listaArcos->append(nuevoArco);
+	}
+
 	string getNombre() {
 		return nombre;
 	}
@@ -43,6 +49,10 @@ public:
 
 	Dlinkedlist<Vertice*>* getlistaAdyacentes(){
 		return listaAdyacentes;
+	}
+
+	Dlinkedlist<Arista*>* getlistaArcos() {
+		return listaArcos;
 	}
 
 	Vertice* setVerticesig(Vertice* siguiente) {

@@ -34,8 +34,13 @@ void PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 	Vertice* inicioResultante = grafoResultante.GetVertice(to_string(nodoInicial));
 	grafoResultante.iniciarGrafo(inicioResultante);
 	Dlinkedlist<Arista*>* listaArcos = new Dlinkedlist<Arista*>();
-	listaArcos = oldGrafo.placeholder();
-
+	listaArcos = oldGrafo.NodoActual()->getlistaArcos();
+	while (!listaArcos->isEmpty()) {
+		int siguienteArco = rand() % listaArcos->getSize();
+		listaArcos->gotoPos(siguienteArco);
+		Arista* temp = listaArcos->getElement();
+		grafoResultante.InsertaArista();//hacer despiche con el nodo de origen para crear el arco en el grafo resultante
+	}
 }
 
 int main()

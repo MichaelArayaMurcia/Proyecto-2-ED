@@ -125,5 +125,6 @@ public:
 	void EliminarArista(Vertice* origen, Vertice* destino);
 	void Anular();
 	void EliminarVertice(Vertice* vert);
+	Vertice* NodoActual();
 };
 #endif

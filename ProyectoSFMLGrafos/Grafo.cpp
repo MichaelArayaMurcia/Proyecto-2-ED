@@ -196,6 +196,10 @@ void Grafo::EliminarVertice(Vertice* vert)
 	}
 }
 
+Vertice* Grafo::NodoActual() {
+	return h;
+}
+
 void Grafo::iniciarGrafo(Vertice* inicio) {
 	h = inicio;
 }

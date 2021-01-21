@@ -111,6 +111,10 @@ public:
     int getSize(){
         return size;
     }
+
+    bool isEmpty() {
+        return size == 0;
+    }
 };
 
 #endif // DLINKEDLIST_H

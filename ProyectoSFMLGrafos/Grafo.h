@@ -67,7 +67,7 @@ public:
 		nombre = Nombre;
 	}
 
-	bool setVisitado(bool Valor) {
+	void setVisitado(bool Valor) {
 		visitado = Valor;
 	}
 

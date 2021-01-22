@@ -23,6 +23,9 @@ public:
 	Vertice() {
 		listaAdyacentes = new Dlinkedlist<Vertice*>();
 		listaArcos = new Dlinkedlist<Arista*>();
+		visitado = false;
+		sig = nullptr;
+		ady = nullptr;
 	}
 
 	~Vertice() {}
@@ -86,6 +89,15 @@ private:
 	friend class Grafo;
 
 public:
+	Arista() {
+		sig = nullptr;
+		ady = nullptr;
+		origen = nullptr;
+		peso = 1;
+	}
+
+	~Arista() {}
+
 	Arista* getAristasig() {
 		return sig;
 	}

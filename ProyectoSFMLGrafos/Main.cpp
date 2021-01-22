@@ -121,34 +121,40 @@ Grafo busquedaProfundidadModificada(Grafo oldGrafo, int filas, int columnas) {
 }
 
 
-void PrimModificado(Grafo oldGrafo, int filas, int columnas) {
+Grafo PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 	srand(time(0));
 	Grafo grafoResultante = Grafo();
 	int conta = 1;
-
 	for (int i = 0; i < filas; i++) {
 		for (int j = 0; j < columnas; j++) {
 			grafoResultante.InsertaVertice(to_string(conta));
 			conta += 1;
 		}
 	}
-
 	int nodoInicial = (rand() % (filas * columnas)) + 1;
 	Vertice* inicio = oldGrafo.GetVertice(to_string(nodoInicial));
 	oldGrafo.iniciarGrafo(inicio);
-
 	Vertice* inicioResultante = grafoResultante.GetVertice(to_string(nodoInicial));
 	grafoResultante.iniciarGrafo(inicioResultante);
-
+	grafoResultante.NodoActual()->setVisitado(true);
 	Dlinkedlist<Arista*>* listaArcos = new Dlinkedlist<Arista*>();
 	listaArcos = oldGrafo.NodoActual()->getlistaArcos();
-
 	while (!listaArcos->isEmpty()) {
 		int siguienteArco = rand() % listaArcos->getSize();
 		listaArcos->gotoPos(siguienteArco);
-		Arista* temp = listaArcos->getElement();
-		//grafoResultante.InsertaArista();//hacer despiche con el nodo de origen para crear el arco en el grafo resultante
+		Arista* temp = listaArcos->remove();
+		if (temp->getVerticeady()->getVisitado() != true) {
+			grafoResultante.InsertaArista(grafoResultante.GetVertice(temp->getOrigen()->getNombre()), grafoResultante.GetVertice(temp->getVerticeady()->getNombre()), 1);
+			grafoResultante.iniciarGrafo(temp->getVerticeady());
+			grafoResultante.NodoActual()->setVisitado(true);
+			temp->getVerticeady()->getlistaArcos()->gotoStart();
+			for (int i = 0; i < temp->getVerticeady()->getlistaArcos()->getSize(); i++) {
+				listaArcos->append(temp->getVerticeady()->getlistaArcos()->getElement());
+				temp->getVerticeady()->getlistaArcos()->next();
+			}
+		}
 	}
+	return grafoResultante;
 }
 
 int main()
@@ -310,8 +316,9 @@ int main()
 	cout << "El size es: " << nuevoGrafo.tamano() << endl;
 
 	//nuevoGrafo.ListaAdyacencia();
+	//busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
 
-	nuevoGrafo = busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
+	nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
 	//---------------------------------------------------
 	//---------------------------------------------------
 	//---------------------------------------------------

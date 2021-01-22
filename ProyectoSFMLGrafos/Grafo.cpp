@@ -2,12 +2,12 @@
 
 void Grafo::Inicializa() 
 {
-	h = NULL;
+	h = nullptr;
 }
 
 bool Grafo::Vacio()
 {
-	return h == NULL;
+	return h == nullptr;
 }
 
 int Grafo::tamano() 
@@ -16,7 +16,7 @@ int Grafo::tamano()
 	Vertice* aux;
 	aux = h;
 
-	while(aux != NULL){
+	while(aux != nullptr){
 		conta += 1;
 		aux = aux->sig;
 	}
@@ -28,22 +28,22 @@ Vertice* Grafo::GetVertice(string nombre)
 	
 	Vertice* aux;
 	aux = h;
-	while (aux != NULL) {
+	while (aux != nullptr) {
 		if (aux->nombre == nombre) {
 			return aux;
 		}
 		aux = aux->sig;
 
 	}
-	return NULL;
+	return nullptr;
 }
 
 void Grafo::InsertaVertice(string nombre)
 {
-	Vertice* nuevo = new Vertice;
+	Vertice* nuevo = new Vertice();
 	nuevo->nombre = nombre;
-	nuevo->sig = NULL;
-	nuevo->ady = NULL;
+	nuevo->sig = nullptr;
+	nuevo->ady = nullptr;
 
 	if (Vacio()) {
 		h = nuevo;
@@ -51,7 +51,7 @@ void Grafo::InsertaVertice(string nombre)
 	else {
 		Vertice* aux;
 		aux = h;
-		while (aux->sig != NULL) {
+		while (aux->sig != nullptr) {
 			aux = aux->sig;
 		}
 		aux->sig = nuevo;
@@ -62,22 +62,22 @@ void Grafo::InsertaArista(Vertice *origen, Vertice *destino, int peso)
 {
 	Arista* nueva = new Arista;
 	nueva->peso = peso;
-	nueva->sig = NULL;
-	nueva->ady = NULL;
+	nueva->sig = nullptr;
+	nueva->ady = nullptr;
 	nueva->setOrigen(origen);
 
 	Arista* aux;
 
 	aux = origen->ady;
 
-	if (aux == NULL) 
+	if (aux == nullptr)
 	{
 		origen->ady = nueva;
 		nueva->ady = destino;
 	}
 	else
 	{
-		while (aux->sig != NULL)
+		while (aux->sig != nullptr)
 		{
 			aux = aux->sig;
 		}
@@ -95,11 +95,11 @@ void Grafo::ListaAdyacencia()
 	Arista* ArisAux;
 
 	VertAux = h;
-	while (VertAux != NULL) {
+	while (VertAux != nullptr) {
 		cout << VertAux->nombre << "->";
 		
 		ArisAux = VertAux->ady;
-		while (ArisAux != NULL) {
+		while (ArisAux != nullptr) {
 			cout << ArisAux->ady->nombre << "->";
 			ArisAux = ArisAux->sig;
 			
@@ -114,7 +114,7 @@ void Grafo::Anular()
 {
 	Vertice* aux;
 
-	while (h != NULL) 
+	while (h != nullptr)
 	{
 		aux = h;
 		h = h->sig;
@@ -131,7 +131,7 @@ void Grafo::EliminarArista(Vertice* origen, Vertice* destino)
 	actual = origen->ady;
 	anterior = actual;
 
-	if (actual == NULL) 
+	if (actual == nullptr)
 	{
 		cout << "El vertice origen no tiene aristas" << endl;
 	}
@@ -141,7 +141,7 @@ void Grafo::EliminarArista(Vertice* origen, Vertice* destino)
 		delete(actual);
 	}
 	else {
-		while (actual != NULL)
+		while (actual != nullptr)
 		{
 			if (actual->ady == destino) 
 			{
@@ -167,9 +167,9 @@ void Grafo::EliminarVertice(Vertice* vert)
 
 	actual = h;
 	anterior = actual;
-	while (actual != NULL) {
+	while (actual != nullptr) {
 		aux = actual->ady;
-		while (aux != NULL) {
+		while (aux != nullptr) {
 			if(aux->ady == vert)
 			{
 				EliminarArista(actual, aux->ady);

@@ -64,6 +64,7 @@ void Grafo::InsertaArista(Vertice *origen, Vertice *destino, int peso)
 	nueva->peso = peso;
 	nueva->sig = NULL;
 	nueva->ady = NULL;
+	nueva->setOrigen(origen);
 
 	Arista* aux;
 

@@ -81,6 +81,7 @@ class Arista
 private:
 	Arista* sig;
 	Vertice* ady;
+	Vertice* origen;
 	int peso;
 	friend class Grafo;
 
@@ -95,6 +96,14 @@ public:
 
 	int getPeso() {
 		return peso;
+	}
+
+	void setOrigen(Vertice* origen) {
+		this->origen = origen;
+	}
+
+	Vertice* getOrigen() {
+		return origen;
 	}
 
 	Arista* setAristasig(Arista* siguiente) {

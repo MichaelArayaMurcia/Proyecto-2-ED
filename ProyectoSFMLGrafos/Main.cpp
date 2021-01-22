@@ -39,7 +39,9 @@ void PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 		int siguienteArco = rand() % listaArcos->getSize();
 		listaArcos->gotoPos(siguienteArco);
 		Arista* temp = listaArcos->getElement();
-		grafoResultante.InsertaArista();//hacer despiche con el nodo de origen para crear el arco en el grafo resultante
+		grafoResultante.InsertaArista(grafoResultante.NodoActual(), grafoResultante.GetVertice(temp->getVerticeady()->getNombre()), 1);
+		listaArcos->remove();
+		
 	}
 }
 

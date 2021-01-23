@@ -60,7 +60,7 @@ void Grafo::InsertaVertice(string nombre)
 
 void Grafo::InsertaArista(Vertice *origen, Vertice *destino, int peso) 
 {
-	Arista* nueva = new Arista;
+	Arista* nueva = new Arista();
 	nueva->peso = peso;
 	nueva->sig = nullptr;
 	nueva->ady = nullptr;

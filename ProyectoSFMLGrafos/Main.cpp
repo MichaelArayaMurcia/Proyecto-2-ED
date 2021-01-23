@@ -125,11 +125,11 @@ Grafo PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 			conta += 1;
 		}
 	}
-	int nodoInicial = (rand() % (filas * columnas)) + 1;
-	Vertice* inicio = oldGrafo.GetVertice(to_string(nodoInicial));
+	//int nodoInicial = (rand() % (filas * columnas)) + 1;
+	Vertice* inicio = oldGrafo.GetVertice(to_string(1));
 	oldGrafo.iniciarGrafo(inicio);
-	Vertice* inicioResultante = grafoResultante.GetVertice(to_string(nodoInicial));
-	grafoResultante.iniciarGrafo(inicioResultante);
+	//Vertice* inicioResultante = grafoResultante.GetVertice(to_string(nodoInicial));
+	grafoResultante.iniciarGrafo(inicio);
 	grafoResultante.NodoActual()->setVisitado(true);
 	Dlinkedlist<Arista*>* listaArcos = new Dlinkedlist<Arista*>();
 	listaArcos = oldGrafo.NodoActual()->getlistaArcos();
@@ -137,7 +137,9 @@ Grafo PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 		int siguienteArco = rand() % listaArcos->getSize();
 		listaArcos->gotoPos(siguienteArco);
 		Arista* temp = listaArcos->remove();
-		if (temp->getVerticeady()->getVisitado() != true) {
+		Vertice* verticeTemp = temp->getVerticeady();
+		if (!verticeTemp->getVisitado()) {
+			cout << "entron al if" << endl;
 			grafoResultante.InsertaArista(grafoResultante.GetVertice(temp->getOrigen()->getNombre()), grafoResultante.GetVertice(temp->getVerticeady()->getNombre()), 1);
 			grafoResultante.iniciarGrafo(temp->getVerticeady());
 			grafoResultante.NodoActual()->setVisitado(true);
@@ -309,11 +311,10 @@ int main()
 
 	//cout << "El size es: " << nuevoGrafo.tamano() << endl;
 
-	//nuevoGrafo.ListaAdyacencia();
-	busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
-	//nuevoGrafo.ListaAdyacencia();
-
-	//nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
+	nuevoGrafo.ListaAdyacencia();
+	//busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
+	nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
+	nuevoGrafo.ListaAdyacencia();
 	//---------------------------------------------------
 	//---------------------------------------------------
 	//---------------------------------------------------

@@ -28,28 +28,28 @@ Grafo busquedaProfundidadModificadaAux(Grafo grafoResultante, Vertice* primerVer
 		listaCantidadVecinos->append(i);
 	}
 
+	while (vecinosNoVisitados->getSize() > 0) {
 
-	for (vecinosNoVisitados->gotoStart(); !vecinosNoVisitados->atEnd(); vecinosNoVisitados->next()) {
 		int numeroAleatorio = rand() % vecinosNoVisitados->getSize();
-		int i = 0;
-		for (vecinosNoVisitados->gotoStart(); !vecinosNoVisitados->atEnd(); vecinosNoVisitados->next()) {
-			if (i == numeroAleatorio) {
-				Vertice* vecino = vecinosNoVisitados->getElement();
-				//---- 3.a. Se marca el nodo como visitado
-				vecino->setVisitado(true);
+		vecinosNoVisitados->gotoPos(numeroAleatorio);
+		Vertice* vecino = vecinosNoVisitados->getElement();
 
+		//---- 3.a. Se marca el nodo como visitado
+		primerVertice->setVisitado(true);
 
-				//---- 3.b. Se agrega el arco correspondiente al grafo resultante
-				grafoResultante.InsertaArista(primerVertice, vecino, 1);
+		//---- 3.b. Se agrega el arco correspondiente al grafo resultante
 
-				//---- 3.c. Se repite recursivamente desde el punto 2
-				grafoResultante = busquedaProfundidadModificadaAux(grafoResultante, vecino);
-
-				vecinosNoVisitados->remove();
-			}
-			i++;
-
+		if (vecino->getVisitado() == false) {
+			grafoResultante.InsertaArista(primerVertice, vecino, 1);
 		}
+
+		
+
+		//---- 3.c. Se repite recursivamente desde el punto 2
+		grafoResultante = busquedaProfundidadModificadaAux(grafoResultante, vecino);
+
+		vecinosNoVisitados->remove();
+
 	}
 
 	return grafoResultante;
@@ -89,28 +89,23 @@ Grafo busquedaProfundidadModificada(Grafo oldGrafo, int filas, int columnas) {
 		listaCantidadVecinos->append(i);
 	}
 
+	while (vecinosNoVisitados->getSize() > 0) {
 
-	for (vecinosNoVisitados->gotoStart(); !vecinosNoVisitados->atEnd(); vecinosNoVisitados->next()) {
 		int numeroAleatorio = rand() % vecinosNoVisitados->getSize();
-		int i = 0;
-		for (vecinosNoVisitados->gotoStart(); !vecinosNoVisitados->atEnd(); vecinosNoVisitados->next()) {
-			if (i == numeroAleatorio) {
-				Vertice* vecino = vecinosNoVisitados->getElement();
-				//---- 3.a. Se marca el nodo como visitado
-				vecino->setVisitado(true);
+		vecinosNoVisitados->gotoPos(numeroAleatorio);
+		Vertice* vecino = vecinosNoVisitados->getElement();
 
+		//---- 3.a. Se marca el nodo como visitado
+		vecino->setVisitado(true);
 
-				//---- 3.b. Se agrega el arco correspondiente al grafo resultante
-				grafoResultante.InsertaArista(primerVertice, vecino, 1);
+		//---- 3.b. Se agrega el arco correspondiente al grafo resultante
+		grafoResultante.InsertaArista(primerVertice, vecino, 1);
 
-				//---- 3.c. Se repite recursivamente desde el punto 2
-				grafoResultante = busquedaProfundidadModificadaAux(grafoResultante, vecino);
+		//---- 3.c. Se repite recursivamente desde el punto 2
+		grafoResultante = busquedaProfundidadModificadaAux(grafoResultante, vecino);
 
-				vecinosNoVisitados->remove();
-			}
-			i++;
+		vecinosNoVisitados->remove();
 
-		}
 	}
 
 
@@ -119,7 +114,6 @@ Grafo busquedaProfundidadModificada(Grafo oldGrafo, int filas, int columnas) {
 	return grafoResultante;
 
 }
-
 
 Grafo PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 	srand(time(0));
@@ -313,17 +307,21 @@ int main()
 		contaCentro += 2;
 	}
 
-	cout << "El size es: " << nuevoGrafo.tamano() << endl;
+	//cout << "El size es: " << nuevoGrafo.tamano() << endl;
 
 	//nuevoGrafo.ListaAdyacencia();
-	//busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
+	busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
+	//nuevoGrafo.ListaAdyacencia();
 
-	nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
+	//nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
 	//---------------------------------------------------
 	//---------------------------------------------------
 	//---------------------------------------------------
 
 	// Create the main window
+
+	int Largo = 1000;
+
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
 
@@ -350,29 +348,78 @@ int main()
 		float conta2 = 0;
 
 		for (int i = 1; i < filas * columnas + 1; i++) {
-			posX = conta * 50;
+			posX = conta * 20;
 
 			//----------------- Dibujar los vertices -----------
-			sf::RectangleShape rectangle(sf::Vector2f(120.f, 50.f));
-			rectangle.setSize(sf::Vector2f(50.f, 50.f));
-			rectangle.setPosition(posX, posY);
-			rectangle.setOutlineThickness(1);
-			rectangle.setOutlineColor(sf::Color(0, 0, 255));
+			sf::RectangleShape rectangleNodo(sf::Vector2f(120.f, 50.f));
+			rectangleNodo.setSize(sf::Vector2f(10.f, 10.f));
+			rectangleNodo.setPosition(posX, posY);
+			//rectangleNodo.setOutlineThickness(1);
+			rectangleNodo.setOutlineColor(sf::Color(0, 0, 255));
 
-			if (nuevoGrafo.GetVertice(to_string(i))->getVisitado() == true) {
-				rectangle.setFillColor(sf::Color(100, 250, 50));
+			Vertice* primerNodo = nuevoGrafo.GetVertice(to_string(i));
+
+			//--------- Nodo de entrada --------------
+			if (primerNodo->getNombre() == "1") {
+				rectangleNodo.setFillColor(sf::Color(255, 0, 0));
 			}
+			//--------- Nodo de salida ---------------
+			else if (primerNodo->getNombre() == to_string(filas * columnas)) {
+				rectangleNodo.setFillColor(sf::Color(0,255,0));
+			}
+			//--------- Nodos de en medio ------------
 			else {
-				rectangle.setFillColor(sf::Color(0, 0, 0));
+				rectangleNodo.setFillColor(sf::Color(0, 0, 255));
 			}
 
+			//---------------- Dibujar los arcos --------------
+			Dlinkedlist<Arista*>* listaArcosVecinos = nuevoGrafo.GetVertice(to_string(i))->getlistaArcos();
 
-			window.draw(rectangle);
+			for (int j = 0; j < listaArcosVecinos->getSize(); j++) {
+				sf::RectangleShape rectangleArcoVecino(sf::Vector2f(120.f, 50.f));
+				rectangleArcoVecino.setSize(sf::Vector2f(10.f, 10.f));
+				
+				listaArcosVecinos->gotoPos(j);
+				Arista* aristaVecina = listaArcosVecinos->getElement();
+				Vertice* vecino = aristaVecina->getVerticeady();
+				rectangleArcoVecino.setFillColor(sf::Color(0, 0, 255));
+
+				if (aristaVecina->getOrigen()->getNombre() == primerNodo->getNombre() && aristaVecina->getVerticeady()->getNombre() == vecino->getNombre()) {
+
+
+					//---------- Dibujarlo arriba ----
+					if (stoi(vecino->getNombre()) == i - columnas) {
+						rectangleArcoVecino.setPosition(posX, posY - 10);
+						window.draw(rectangleArcoVecino);
+					}
+
+					//---------- Dibujarlo abajo ----
+					else if (stoi(vecino->getNombre()) == i + columnas) {
+						rectangleArcoVecino.setPosition(posX, posY + 10);
+						window.draw(rectangleArcoVecino);
+					}
+
+					//---------- Dibujarlo izquierda ----
+					else if (stoi(vecino->getNombre()) == i - 1) {
+						rectangleArcoVecino.setPosition(posX - 10, posY);
+						window.draw(rectangleArcoVecino);
+					}
+
+					//---------- Dibujarlo derecha ----
+					else if (stoi(vecino->getNombre()) == i + 1) {
+						rectangleArcoVecino.setPosition(posX + 10, posY);
+						window.draw(rectangleArcoVecino);
+					}
+				}
+
+			}
+
+			window.draw(rectangleNodo);
 
 			conta += 1;
 
 			if (i % columnas == 0 && i != 0) {
-				posY += 50;
+				posY += 20;
 				conta = 0;
 			}
 		}

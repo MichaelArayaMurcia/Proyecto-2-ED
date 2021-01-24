@@ -1,9 +1,5 @@
 ﻿  Main.cpp
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(73,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(133,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(173,44): warning C4101: 'Q': variable local sin referencia
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(182,37): warning C4101: 'INICIAL': variable local sin referencia
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(362,23): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(187): warning C4715: 'algoritmoDijkstra': no todas las rutas de acceso de control devuelven un valor
-  LINK : no se encontró C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
-  ProyectoSFMLGrafos.vcxproj -> C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(69,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(129,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(503,23): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+  ProyectoSFMLGrafos.vcxproj -> C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe

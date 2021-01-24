@@ -279,16 +279,17 @@ Grafo PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 	//------------------------------------------------------------------------
 
 	
-	int nodoInicial = (rand() % (filas * columnas)) + 1;
+	//int nodoInicial = (rand() % (filas * columnas)) + 1;
 
-	Vertice* inicio = oldGrafo.GetVertice(to_string(nodoInicial));
+	Vertice* inicio = oldGrafo.GetVertice(to_string(1));
 	
 	oldGrafo.iniciarGrafo(inicio);
 
-	Vertice* inicioResultante = grafoResultante.GetVertice(to_string(nodoInicial));
+	Vertice* inicioResultante = grafoResultante.GetVertice(to_string(1));
 	
 	grafoResultante.iniciarGrafo(inicioResultante);
 	grafoResultante.NodoActual()->setVisitado(true);
+	oldGrafo.NodoActual()->setVisitado(true);
 	
 	Dlinkedlist<Arista*>* listaArcos = new Dlinkedlist<Arista*>();
 	listaArcos = oldGrafo.NodoActual()->getlistaArcos();
@@ -305,8 +306,9 @@ Grafo PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 			Vertice* vertice2 = grafoResultante.GetVertice(temp->getVerticeady()->getNombre());
 
 			grafoResultante.InsertaArista(vertice1 , vertice2, 1);
-			grafoResultante.iniciarGrafo(temp->getVerticeady());
-			grafoResultante.NodoActual()->setVisitado(true);
+			vertice2->setVisitado(true);
+			Vertice* tempviejo = oldGrafo.GetVertice(vertice2->getNombre());
+			tempviejo->setVisitado(true);
 		
 			temp->getVerticeady()->getlistaArcos()->gotoStart();
 			
@@ -323,9 +325,7 @@ Grafo PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 	return grafoResultante;
 }
 
-Grafo algoritmoDijkstra(Grafo oldGrafo, Vertice* nodoFuente) {	
-
-}
+//Grafo algoritmoDijkstra(Grafo oldGrafo, Vertice* nodoFuente) {	}
 
 int main()
 {
@@ -486,10 +486,10 @@ int main()
 	//cout << "El size es: " << nuevoGrafo.tamano() << endl;
 
 	//nuevoGrafo.ListaAdyacencia();
-	busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
+	//busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
 	//nuevoGrafo.ListaAdyacencia();
 
-	//nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
+	nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
 	//---------------------------------------------------
 	//---------------------------------------------------
 	//---------------------------------------------------

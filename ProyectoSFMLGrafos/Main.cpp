@@ -500,7 +500,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(700, 700), "SFML window");
 
 
-	float tamañoGeneral = 700 / ((filas * 2) - 1);
+	float tamañoGeneral = window.getSize().x / ((filas * 2) - 1);
 
 	// Start the game loop
 	while (window.isOpen())
@@ -525,11 +525,11 @@ int main()
 		float conta2 = 0;
 
 		for (int i = 1; i < filas * columnas + 1; i++) {
-			posX = conta * tamañoGeneral * 2; // tamañoGeneral * 2
+			posX = conta * (window.getSize().x) / (filas*0.99); // tamañoGeneral * 2
 
 			//----------------- Dibujar los vertices -----------
 			sf::RectangleShape rectangleNodo(sf::Vector2f(120.f, 50.f));
-			rectangleNodo.setSize(sf::Vector2f(tamañoGeneral, tamañoGeneral)); // tamañoGeneral
+			rectangleNodo.setSize(sf::Vector2f((window.getSize().x)/(filas*1.50), (window.getSize().y) / (columnas * 1.30))); // tamañoGeneral
 			rectangleNodo.setPosition(posX, posY);
 			//rectangleNodo.setOutlineThickness(1);
 			rectangleNodo.setOutlineColor(sf::Color(0, 0, 255));
@@ -554,7 +554,7 @@ int main()
 
 			for (int j = 0; j < listaArcosVecinos->getSize(); j++) {
 				sf::RectangleShape rectangleArcoVecino(sf::Vector2f(120.f, 50.f));
-				rectangleArcoVecino.setSize(sf::Vector2f(tamañoGeneral, tamañoGeneral)); // tamañoGeneral
+				rectangleArcoVecino.setSize(sf::Vector2f((window.getSize().x) / (filas * 1.50), (window.getSize().y) / (columnas * 1.30))); // tamañoGeneral
 
 				listaArcosVecinos->gotoPos(j);
 				Arista* aristaVecina = listaArcosVecinos->getElement();
@@ -596,7 +596,7 @@ int main()
 			conta += 1;
 
 			if (i % columnas == 0 && i != 0) {
-				posY += tamañoGeneral * 2; //tamañoGeneral * 2
+				posY += (window.getSize().y) / (columnas*0.99); //tamañoGeneral * 2
 				conta = 0;
 			}
 		}

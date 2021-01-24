@@ -43,7 +43,7 @@ Grafo busquedaProfundidadModificadaAux(Grafo grafoResultante, Vertice* primerVer
 			grafoResultante.InsertaArista(primerVertice, vecino, 1);
 		}
 
-		
+
 
 		//---- 3.c. Se repite recursivamente desde el punto 2
 		grafoResultante = busquedaProfundidadModificadaAux(grafoResultante, vecino);
@@ -64,143 +64,6 @@ Grafo busquedaProfundidadModificada(Grafo oldGrafo, int filas, int columnas) {
 
 	Grafo grafoResultante = Grafo();
 	int conta = 1;
-
-	//-------------------------------------------
-		//---------- Poner las aristas de las esquinas ---------------------------
-	//---------- Esquina superior izquierda ----------------------------------
-	Vertice* vertice1 = oldGrafo.GetVertice(to_string(1));
-	Vertice* vertice2 = oldGrafo.GetVertice(to_string(1 + 1));
-	Vertice* vertice3 = oldGrafo.GetVertice(to_string(1 + columnas));
-
-	oldGrafo.InsertaArista(vertice1, vertice2, 1);
-	oldGrafo.InsertaArista(vertice1, vertice3, 1);
-	oldGrafo.InsertaArista(vertice2, vertice1, 1);
-	oldGrafo.InsertaArista(vertice3, vertice1, 1);
-
-	//---------- Esquina superior derecha ------------------------------------
-	Vertice* vertice4 = oldGrafo.GetVertice(to_string(columnas));
-	Vertice* vertice5 = oldGrafo.GetVertice(to_string(columnas - 1));
-	Vertice* vertice6 = oldGrafo.GetVertice(to_string((columnas - 1) + columnas + 1));
-
-	oldGrafo.InsertaArista(vertice4, vertice5, 1);
-	oldGrafo.InsertaArista(vertice4, vertice6, 1);
-	oldGrafo.InsertaArista(vertice5, vertice4, 1);
-	oldGrafo.InsertaArista(vertice6, vertice4, 1);
-
-	//---------- Esquina inferior derecha ------------------------------------
-	Vertice* vertice7 = oldGrafo.GetVertice(to_string((columnas * filas)));
-	Vertice* vertice8 = oldGrafo.GetVertice(to_string(columnas * filas - 1));
-	Vertice* vertice9 = oldGrafo.GetVertice(to_string((columnas * filas) - columnas));
-
-	oldGrafo.InsertaArista(vertice7, vertice8, 1);
-	oldGrafo.InsertaArista(vertice7, vertice9, 1);
-	oldGrafo.InsertaArista(vertice8, vertice7, 1);
-	oldGrafo.InsertaArista(vertice9, vertice7, 1);
-
-	//---------- Esquina inferior izquierda ----------------------------------
-	Vertice* vertice10 = oldGrafo.GetVertice(to_string((columnas * filas) - (columnas - 1)));
-	Vertice* vertice11 = oldGrafo.GetVertice(to_string((columnas * filas) - (columnas - 1) + 1));
-	Vertice* vertice12 = oldGrafo.GetVertice(to_string((columnas * filas) - (columnas - 1) - columnas));
-
-	oldGrafo.InsertaArista(vertice10, vertice11, 1);
-	oldGrafo.InsertaArista(vertice10, vertice12, 1);
-	oldGrafo.InsertaArista(vertice11, vertice10, 1);
-	oldGrafo.InsertaArista(vertice12, vertice10, 1);
-
-	//---------- Poner las aristas de los lados ------------------------------
-	//---------- Las aristas del lado superior -------------------------------
-	for (int i = 2; i < columnas; i++) {
-		Vertice* vertice13 = oldGrafo.GetVertice(to_string(i));
-		Vertice* vertice14 = oldGrafo.GetVertice(to_string(i - 1));
-		Vertice* vertice15 = oldGrafo.GetVertice(to_string(i + 1));
-		Vertice* vertice16 = oldGrafo.GetVertice(to_string(i + columnas));
-
-		oldGrafo.InsertaArista(vertice13, vertice14, 1);
-		oldGrafo.InsertaArista(vertice13, vertice15, 1);
-		oldGrafo.InsertaArista(vertice13, vertice16, 1);
-		oldGrafo.InsertaArista(vertice14, vertice13, 1);
-		oldGrafo.InsertaArista(vertice15, vertice13, 1);
-		oldGrafo.InsertaArista(vertice16, vertice13, 1);
-	}
-	//---------- Las aristas del lado izquierdo -------------------------------
-	int contaLateralIzquierdo = 1 + columnas;
-	for (int i = 0; i < filas - 2; i++) {
-		Vertice* vertice17 = oldGrafo.GetVertice(to_string(contaLateralIzquierdo));
-		Vertice* vertice18 = oldGrafo.GetVertice(to_string(contaLateralIzquierdo - columnas));
-		Vertice* vertice19 = oldGrafo.GetVertice(to_string(contaLateralIzquierdo + 1));
-		Vertice* vertice20 = oldGrafo.GetVertice(to_string(contaLateralIzquierdo + columnas));
-
-		oldGrafo.InsertaArista(vertice17, vertice18, 1);
-		oldGrafo.InsertaArista(vertice17, vertice19, 1);
-		oldGrafo.InsertaArista(vertice17, vertice20, 1);
-		oldGrafo.InsertaArista(vertice18, vertice17, 1);
-		oldGrafo.InsertaArista(vertice19, vertice17, 1);
-		oldGrafo.InsertaArista(vertice20, vertice17, 1);
-
-		contaLateralIzquierdo += columnas;
-	}
-	//---------- Las aristas del lado derecho -------------------------------
-	int contaLateralDerecho = columnas * 2;
-	for (int i = 0; i < filas - 2; i++) {
-		Vertice* vertice21 = oldGrafo.GetVertice(to_string(contaLateralDerecho));
-		Vertice* vertice22 = oldGrafo.GetVertice(to_string(contaLateralDerecho - columnas));
-		Vertice* vertice23 = oldGrafo.GetVertice(to_string(contaLateralDerecho - 1));
-		Vertice* vertice24 = oldGrafo.GetVertice(to_string(contaLateralDerecho + columnas));
-
-		oldGrafo.InsertaArista(vertice21, vertice22, 1);
-		oldGrafo.InsertaArista(vertice21, vertice23, 1);
-		oldGrafo.InsertaArista(vertice21, vertice24, 1);
-		oldGrafo.InsertaArista(vertice22, vertice21, 1);
-		oldGrafo.InsertaArista(vertice23, vertice21, 1);
-		oldGrafo.InsertaArista(vertice24, vertice21, 1);
-
-		contaLateralDerecho += columnas;
-	}
-	//---------- Las aristas del lado inferior -------------------------------
-	int inicioUltimaColumna = (columnas * filas) - (columnas - 1);
-
-	for (int i = inicioUltimaColumna + 1; i < columnas * columnas; i++) {
-		Vertice* vertice25 = oldGrafo.GetVertice(to_string(i));
-		Vertice* vertice26 = oldGrafo.GetVertice(to_string(i - 1));
-		Vertice* vertice27 = oldGrafo.GetVertice(to_string(i + 1));
-		Vertice* vertice28 = oldGrafo.GetVertice(to_string(i - columnas));
-
-		oldGrafo.InsertaArista(vertice25, vertice26, 1);
-		oldGrafo.InsertaArista(vertice25, vertice27, 1);
-		oldGrafo.InsertaArista(vertice25, vertice28, 1);
-		oldGrafo.InsertaArista(vertice26, vertice25, 1);
-		oldGrafo.InsertaArista(vertice27, vertice25, 1);
-		oldGrafo.InsertaArista(vertice28, vertice25, 1);
-
-	}
-	//--------------------------------------------------------------------------
-
-	//---------- Poner las aristas del centro --------------------------------
-	int contaCentro = 2 + columnas;
-	for (int i = 0; i < filas - 2; i++) {
-		for (int j = 0; j < columnas - 2; j++) {
-			Vertice* vertice29 = oldGrafo.GetVertice(to_string(contaCentro));
-			Vertice* vertice30 = oldGrafo.GetVertice(to_string(contaCentro));
-			Vertice* vertice31 = oldGrafo.GetVertice(to_string(contaCentro + 1));
-			Vertice* vertice32 = oldGrafo.GetVertice(to_string(contaCentro - columnas));
-			Vertice* vertice33 = oldGrafo.GetVertice(to_string(contaCentro + columnas));
-
-			oldGrafo.InsertaArista(vertice29, vertice30, 1);
-			oldGrafo.InsertaArista(vertice29, vertice31, 1);
-			oldGrafo.InsertaArista(vertice29, vertice32, 1);
-			oldGrafo.InsertaArista(vertice29, vertice33, 1);
-			oldGrafo.InsertaArista(vertice30, vertice29, 1);
-			oldGrafo.InsertaArista(vertice31, vertice29, 1);
-			oldGrafo.InsertaArista(vertice32, vertice29, 1);
-			oldGrafo.InsertaArista(vertice33, vertice29, 1);
-
-			contaCentro += 1;
-		}
-		contaCentro += 2;
-	}
-
-
-	//-------------------------------------------
 
 	grafoResultante = oldGrafo;
 
@@ -262,11 +125,11 @@ Grafo PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 			conta += 1;
 		}
 	}
-	//int nodoInicial = (rand() % (filas * columnas)) + 1;
-	Vertice* inicio = oldGrafo.GetVertice(to_string(1));
+	int nodoInicial = (rand() % (filas * columnas)) + 1;
+	Vertice* inicio = oldGrafo.GetVertice(to_string(nodoInicial));
 	oldGrafo.iniciarGrafo(inicio);
-	//Vertice* inicioResultante = grafoResultante.GetVertice(to_string(nodoInicial));
-	grafoResultante.iniciarGrafo(inicio);
+	Vertice* inicioResultante = grafoResultante.GetVertice(to_string(nodoInicial));
+	grafoResultante.iniciarGrafo(inicioResultante);
 	grafoResultante.NodoActual()->setVisitado(true);
 	Dlinkedlist<Arista*>* listaArcos = new Dlinkedlist<Arista*>();
 	listaArcos = oldGrafo.NodoActual()->getlistaArcos();
@@ -274,9 +137,7 @@ Grafo PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 		int siguienteArco = rand() % listaArcos->getSize();
 		listaArcos->gotoPos(siguienteArco);
 		Arista* temp = listaArcos->remove();
-		Vertice* verticeTemp = temp->getVerticeady();
-		if (!verticeTemp->getVisitado()) {
-			cout << "entron al if" << endl;
+		if (temp->getVerticeady()->getVisitado() != true) {
 			grafoResultante.InsertaArista(grafoResultante.GetVertice(temp->getOrigen()->getNombre()), grafoResultante.GetVertice(temp->getVerticeady()->getNombre()), 1);
 			grafoResultante.iniciarGrafo(temp->getVerticeady());
 			grafoResultante.NodoActual()->setVisitado(true);
@@ -448,10 +309,11 @@ int main()
 
 	//cout << "El size es: " << nuevoGrafo.tamano() << endl;
 
-	nuevoGrafo.ListaAdyacencia();
-	//busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
-	nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
-	nuevoGrafo.ListaAdyacencia();
+	//nuevoGrafo.ListaAdyacencia();
+	busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
+	//nuevoGrafo.ListaAdyacencia();
+
+	//nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
 	//---------------------------------------------------
 	//---------------------------------------------------
 	//---------------------------------------------------
@@ -503,7 +365,7 @@ int main()
 			}
 			//--------- Nodo de salida ---------------
 			else if (primerNodo->getNombre() == to_string(filas * columnas)) {
-				rectangleNodo.setFillColor(sf::Color(0,255,0));
+				rectangleNodo.setFillColor(sf::Color(0, 255, 0));
 			}
 			//--------- Nodos de en medio ------------
 			else {
@@ -516,7 +378,7 @@ int main()
 			for (int j = 0; j < listaArcosVecinos->getSize(); j++) {
 				sf::RectangleShape rectangleArcoVecino(sf::Vector2f(120.f, 50.f));
 				rectangleArcoVecino.setSize(sf::Vector2f(10.f, 10.f));
-				
+
 				listaArcosVecinos->gotoPos(j);
 				Arista* aristaVecina = listaArcosVecinos->getElement();
 				Vertice* vecino = aristaVecina->getVerticeady();

@@ -1,6 +1,1 @@
-﻿  Grafo.cpp
-  Main.cpp
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(59,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(256,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-  Generando código...
-  ProyectoSFMLGrafos.vcxproj -> C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe
+﻿  ProyectoSFMLGrafos.vcxproj -> C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe

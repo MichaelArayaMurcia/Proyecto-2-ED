@@ -150,10 +150,16 @@
     <ClInclude Include="dlinkedlist.h" />
     <ClInclude Include="dnode.h" />
     <ClInclude Include="Grafo.h" />
+    <ClInclude Include="HeapPriorityQueue.h" />
     <ClInclude Include="KVpair.h" />
     <ClInclude Include="linkedlist.h" />
+    <ClInclude Include="LinkedPriorityQueue.h" />
+    <ClInclude Include="Linkedqueue.h" />
     <ClInclude Include="list.h" />
+    <ClInclude Include="Minheap.h" />
     <ClInclude Include="node.h" />
+    <ClInclude Include="priorityQueue.h" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="Vertice.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

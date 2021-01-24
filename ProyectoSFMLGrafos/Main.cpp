@@ -320,10 +320,11 @@ int main()
 
 	// Create the main window
 
-	int Largo = 1000;
 
-	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+	sf::RenderWindow window(sf::VideoMode(700, 700), "SFML window");
 
+
+	float tamañoGeneral = 700 / ((filas * 2) - 1);
 
 	// Start the game loop
 	while (window.isOpen())
@@ -348,11 +349,11 @@ int main()
 		float conta2 = 0;
 
 		for (int i = 1; i < filas * columnas + 1; i++) {
-			posX = conta * 20;
+			posX = conta * tamañoGeneral * 2; // tamañoGeneral * 2
 
 			//----------------- Dibujar los vertices -----------
 			sf::RectangleShape rectangleNodo(sf::Vector2f(120.f, 50.f));
-			rectangleNodo.setSize(sf::Vector2f(10.f, 10.f));
+			rectangleNodo.setSize(sf::Vector2f(tamañoGeneral, tamañoGeneral)); // tamañoGeneral
 			rectangleNodo.setPosition(posX, posY);
 			//rectangleNodo.setOutlineThickness(1);
 			rectangleNodo.setOutlineColor(sf::Color(0, 0, 255));
@@ -377,7 +378,7 @@ int main()
 
 			for (int j = 0; j < listaArcosVecinos->getSize(); j++) {
 				sf::RectangleShape rectangleArcoVecino(sf::Vector2f(120.f, 50.f));
-				rectangleArcoVecino.setSize(sf::Vector2f(10.f, 10.f));
+				rectangleArcoVecino.setSize(sf::Vector2f(tamañoGeneral, tamañoGeneral)); // tamañoGeneral
 
 				listaArcosVecinos->gotoPos(j);
 				Arista* aristaVecina = listaArcosVecinos->getElement();
@@ -389,25 +390,25 @@ int main()
 
 					//---------- Dibujarlo arriba ----
 					if (stoi(vecino->getNombre()) == i - columnas) {
-						rectangleArcoVecino.setPosition(posX, posY - 10);
+						rectangleArcoVecino.setPosition(posX, posY - tamañoGeneral); //tamañoGeneral
 						window.draw(rectangleArcoVecino);
 					}
 
 					//---------- Dibujarlo abajo ----
 					else if (stoi(vecino->getNombre()) == i + columnas) {
-						rectangleArcoVecino.setPosition(posX, posY + 10);
+						rectangleArcoVecino.setPosition(posX, posY + tamañoGeneral); //tamañoGeneral
 						window.draw(rectangleArcoVecino);
 					}
 
 					//---------- Dibujarlo izquierda ----
 					else if (stoi(vecino->getNombre()) == i - 1) {
-						rectangleArcoVecino.setPosition(posX - 10, posY);
+						rectangleArcoVecino.setPosition(posX - tamañoGeneral, posY); //tamañoGeneral
 						window.draw(rectangleArcoVecino);
 					}
 
 					//---------- Dibujarlo derecha ----
 					else if (stoi(vecino->getNombre()) == i + 1) {
-						rectangleArcoVecino.setPosition(posX + 10, posY);
+						rectangleArcoVecino.setPosition(posX + tamañoGeneral, posY); //tamañoGeneral
 						window.draw(rectangleArcoVecino);
 					}
 				}
@@ -419,7 +420,7 @@ int main()
 			conta += 1;
 
 			if (i % columnas == 0 && i != 0) {
-				posY += 20;
+				posY += tamañoGeneral * 2; //tamañoGeneral * 2
 				conta = 0;
 			}
 		}

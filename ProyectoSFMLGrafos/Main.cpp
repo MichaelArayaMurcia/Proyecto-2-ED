@@ -6,6 +6,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include "dlinkedlist.h"
+#include <vector>
+#include "Vertice.h"
+#include "Arista.h"
 
 using namespace std;
 
@@ -150,6 +153,8 @@ Grafo PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 	}
 	return grafoResultante;
 }
+
+//Grafo algoritmoDijkstra(Grafo oldGrafo, Vertice* nodoFuente) {	      }
 
 int main()
 {

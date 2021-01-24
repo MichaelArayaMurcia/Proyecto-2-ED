@@ -142,10 +142,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Grafo.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Arista.h" />
     <ClInclude Include="arraylist.h" />
     <ClInclude Include="dlinkedlist.h" />
     <ClInclude Include="dnode.h" />
@@ -153,8 +153,7 @@
     <ClInclude Include="linkedlist.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="node.h" />
-    <ClInclude Include="NodoArco.h" />
-    <ClInclude Include="NodoGrafo.h" />
+    <ClInclude Include="Vertice.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

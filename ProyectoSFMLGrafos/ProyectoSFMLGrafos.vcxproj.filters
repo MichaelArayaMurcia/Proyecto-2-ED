@@ -18,14 +18,8 @@
     <ClCompile Include="Main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Grafo.cpp">
-      <Filter>Archivos de encabezado</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NodoGrafo.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="arraylist.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -47,7 +41,10 @@
     <ClInclude Include="node.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="NodoArco.h">
+    <ClInclude Include="Arista.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertice.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

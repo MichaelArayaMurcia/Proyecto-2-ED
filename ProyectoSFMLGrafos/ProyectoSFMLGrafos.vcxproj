@@ -151,6 +151,7 @@
     <ClInclude Include="dnode.h" />
     <ClInclude Include="Grafo.h" />
     <ClInclude Include="HeapPriorityQueue.h" />
+    <ClInclude Include="Jugador.h" />
     <ClInclude Include="KVpair.h" />
     <ClInclude Include="linkedlist.h" />
     <ClInclude Include="LinkedPriorityQueue.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="list.h" />
     <ClInclude Include="Minheap.h" />
     <ClInclude Include="node.h" />
+    <ClInclude Include="Objetos.h" />
     <ClInclude Include="priorityQueue.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Vertice.h" />

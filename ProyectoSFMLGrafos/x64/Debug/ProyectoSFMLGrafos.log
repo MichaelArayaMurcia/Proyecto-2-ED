@@ -1,31 +1,6 @@
 ﻿  Main.cpp
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(69,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(129,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(503,23): warning C4244: 'inicializando': conversión de 'T' a 'float'; posible pérdida de datos
-          with
-          [
-              T=unsigned int
-          ]
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(528,40): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(532,95): warning C4244: 'argumento': conversión de 'double' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(532,59): warning C4244: 'argumento': conversión de 'double' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(557,106): warning C4244: 'argumento': conversión de 'double' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(557,67): warning C4244: 'argumento': conversión de 'double' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(599,51): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
-  ProyectoSFMLGrafos.vcxproj -> C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe
+C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(71,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(132,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(509,15): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(510,15): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+  ProyectoSFMLGrafos.vcxproj -> C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe

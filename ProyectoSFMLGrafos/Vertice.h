@@ -16,6 +16,9 @@ private:
 	Dlinkedlist<Vertice*>* listaAdyacentes;
 	Dlinkedlist<Arista*>* listaArcos;
 	friend class Grafo;
+	float posX;
+	float posY;
+
 
 public:
 	Vertice() {
@@ -24,6 +27,8 @@ public:
 		visitado = false;
 		sig = nullptr;
 		ady = nullptr;
+		posX = 0;
+		posY = 0;
 	}
 
 	~Vertice() {}
@@ -75,5 +80,22 @@ public:
 	Dlinkedlist<Vertice*> setlistaAdyacentes(Dlinkedlist<Vertice*>* otraLista) {
 		listaAdyacentes = otraLista;
 	}
+
+	float getposX() {
+		return posX;
+	}
+
+	float getposY() {
+		return posY;
+	}
+
+	void setposX(float posX1) {
+		posX = posX1;
+	}
+
+	void setposY(float posY1) {
+		posY = posY1;
+	}
+
 };
 #endif

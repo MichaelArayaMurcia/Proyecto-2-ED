@@ -3,6 +3,8 @@
 #define ARISTA_H
 #include <iostream>
 #include "dlinkedlist.h"
+#include "Vertice.h"
+
 class Arista
 {
 private:
@@ -11,6 +13,8 @@ private:
 	Vertice* origen;
 	int peso;
 	friend class Grafo;
+	float posX;
+	float posY;
 
 public:
 	Arista() {
@@ -18,6 +22,8 @@ public:
 		ady = nullptr;
 		origen = nullptr;
 		peso = 1;
+		posX = 0;
+		posY = 0;
 	}
 
 	~Arista() {}
@@ -52,6 +58,22 @@ public:
 
 	int setPeso(int nuevoPeso) {
 		peso = nuevoPeso;
+	}
+
+	float getposX() {
+		return posX;
+	}
+
+	float getposY() {
+		return posY;
+	}
+
+	void setposX(float posX1) {
+		posX = posX1;
+	}
+
+	void setposY(float posY1) {
+		posY = posY1;
 	}
 };
 #endif

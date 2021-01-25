@@ -1,4 +1,5 @@
 #include <iostream>
+#define	infinito 9999999
 #include "Grafo.h"
 #include <string>
 #include <SFML/Audio.hpp>
@@ -329,7 +330,51 @@ Grafo PrimModificado(Grafo oldGrafo, int filas, int columnas) {
 	return grafoResultante;
 }
 
-//Grafo algoritmoDijkstra(Grafo oldGrafo, Vertice* nodoFuente) {	}
+void algoritmoFloyd(int** &matrizConecciones, int** &matrizRutas, int cantidadNodos) {
+	for (int i = 0; i < cantidadNodos; i++) {
+		for (int f = 0; f < cantidadNodos; f++) {
+			for (int c = 0; c < cantidadNodos; c++) {
+				if (f != i && c != i && f != c) {
+					int temp = matrizConecciones[f][i] + matrizConecciones[i][c];
+					if (temp < matrizConecciones[f][c]) {
+						matrizConecciones[f][c] = temp;
+						matrizRutas[f][c] = matrizRutas[i][c];
+					}
+				}
+			}
+		}
+	}
+}
+void crearMatriz(int** &matriz, int cantidadNodos) {
+	matriz = new int* [cantidadNodos];
+	for (int i = 0; i < cantidadNodos; i++) {
+		matriz[i] = new int[cantidadNodos];
+	}
+}
+
+void iniciarMatrizConecciones(int** &matriz, Grafo laberinto,int cantidadNodos) {
+	for (int i = 0; i < cantidadNodos; i++) {
+		for (int j = 0; j < cantidadNodos; j++) {
+			matriz[i][j] = infinito;
+		}
+	}
+
+	for (int i = 0; i < cantidadNodos; i++) {
+		Dlinkedlist<Arista*>* listaAristas = laberinto.GetVertice(to_string(i + 1))->getlistaArcos();
+		for (listaAristas->gotoStart(); !listaAristas->atEnd(); listaAristas->next()) {
+			Arista* aristaTemp = listaAristas->getElement();
+			matriz[i][stoi(aristaTemp->getVerticeady()->getNombre())-1] = aristaTemp->getPeso();
+		}
+	}
+}
+
+void iniciarMatrizRutas(int** &matriz, int cantidadNodos) {
+	for (int i = 0; i < cantidadNodos; i++) {
+		for (int j = 0; j < cantidadNodos; j++) {
+			matriz[i][j] = i;
+		}
+	}
+}
 
 int main()
 {
@@ -501,6 +546,16 @@ int main()
 
 	// Create the main window
 
+	int** MatrizConecciones = nullptr;
+	int** MatrizRutas = nullptr;
+	int cantidadNodos = filas * columnas;
+
+	crearMatriz(MatrizConecciones, cantidadNodos);
+	iniciarMatrizConecciones(MatrizConecciones, nuevoGrafo, cantidadNodos);
+
+	crearMatriz(MatrizRutas, cantidadNodos);
+	iniciarMatrizRutas(MatrizRutas, cantidadNodos);
+
 
 	sf::RenderWindow window(sf::VideoMode(700, 700), "SFML window");
 
@@ -535,7 +590,6 @@ int main()
 				if (event.key.code == sf::Keyboard::Left) {
 
 					Vertice* vertice = nuevoGrafo.GetVertice(to_string(numeroNodoActual));
-					cout << vertice->getNombre();
 
 					Dlinkedlist<Arista*>* listaAristas = nuevoGrafo.GetVertice(to_string(numeroNodoActual))->getlistaArcos();
 

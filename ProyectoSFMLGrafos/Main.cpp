@@ -555,6 +555,14 @@ int main()
 
 	crearMatriz(MatrizRutas, cantidadNodos);
 	iniciarMatrizRutas(MatrizRutas, cantidadNodos);
+	algoritmoFloyd(MatrizConecciones, MatrizRutas, cantidadNodos);
+
+	/*for (int i = 0; i < cantidadNodos; i++) {
+		for (int j = 0; j < cantidadNodos; j++) {
+			cout << MatrizRutas[i][j] << "  ";
+		}
+		cout << endl;
+	}*/
 
 
 	sf::RenderWindow window(sf::VideoMode(700, 700), "SFML window");

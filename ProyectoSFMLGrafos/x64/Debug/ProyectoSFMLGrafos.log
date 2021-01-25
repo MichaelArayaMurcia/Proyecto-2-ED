@@ -1,6 +1,6 @@
 ﻿  Main.cpp
 C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(72,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
 C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(133,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(564,15): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(565,15): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(572,15): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(573,15): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
   ProyectoSFMLGrafos.vcxproj -> C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe

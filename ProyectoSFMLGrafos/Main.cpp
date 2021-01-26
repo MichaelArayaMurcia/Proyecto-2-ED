@@ -564,6 +564,9 @@ int main()
 
 	int puntuacion = 0;
 
+	int minutos = 1;
+	int segundos = 59;
+
 
 	while (!gameOver) {
 		Grafo nuevoGrafo = Grafo();
@@ -578,12 +581,11 @@ int main()
 			nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
 		}
 
-		sf::RenderWindow window(sf::VideoMode(700, 700), "SFML window");
+		sf::RenderWindow window(sf::VideoMode(800, 800), "SFML window");
 
 
-		float tamañoGeneral = 20;
-		float sizeX2 = (window.getSize().x) / (filas * 1.50);
-		float sizeY2 = (window.getSize().y) / (columnas * 1.30);
+		float tamañoGeneral = (window.getSize().x / filas /2);
+		
 
 		int numeroNodoActual = 1;
 
@@ -602,9 +604,52 @@ int main()
 
 		nuevoGrafo = inicializarGrafo(nuevoGrafo, filas, columnas);
 
+		int optimizador = 1;
 
-		while (window.isOpen())
-		{
+		int nivelactual = 1;
+
+		int contadorTiempo = 0;
+		
+
+		//sf::Font font;
+		//font.loadFromFile("../Arial.ttf");
+
+
+		while (window.isOpen()) {
+
+			sf::Text nuevoTexto;
+
+			nuevoTexto.setFont(sf::Font());
+
+			if (contadorTiempo % (120 / (nivelactual * optimizador)) <= 0) {
+				if (segundos < 0) {
+					minutos--;
+					segundos = 59;
+				}
+				string tiempo = to_string(minutos) + ":" + to_string(segundos);
+				cout << tiempo << endl;
+
+				
+
+				/*nuevoTexto.setString("tiempo");
+
+				nuevoTexto.setCharacterSize(30);
+
+				nuevoTexto.setFillColor(sf::Color::White);
+
+				nuevoTexto.setPosition(window.getSize().x-100, 20);*/
+
+
+				segundos -= 1;
+			}
+			contadorTiempo++;
+
+
+			if (minutos <= 0 && segundos <= 0) {
+				gameOver = true;
+				break;
+			}
+
 			// Process events
 			sf::Event event;
 			while (window.pollEvent(event))
@@ -636,11 +681,21 @@ int main()
 
 								numeroNodoActual -= 1;
 								jugador.setposX(jugador.getposX() - numeroDistancia);
+
+								
 							}
 						}
 
 						//------------------ Verificar final -----------------------
 						if (numeroNodoActual == filas * columnas && cambiar == true) {
+
+							nivelactual++;
+
+							segundos += 10;
+							if (segundos > 59) {
+								minutos += 1;
+								segundos = segundos % 59;
+							}
 
 							window.close();
 
@@ -673,6 +728,14 @@ int main()
 
 						//------------------ Verificar final -----------------------
 						if (numeroNodoActual == filas * columnas && cambiar == true) {
+
+							nivelactual++;
+
+							segundos += 10;
+							if (segundos > 59) {
+								minutos += 1;
+								segundos = segundos % 59;
+							}
 
 							window.close();
 
@@ -707,6 +770,14 @@ int main()
 						//------------------ Verificar final -----------------------
 						if (numeroNodoActual == filas * columnas && cambiar == true) {
 
+							nivelactual++;
+
+							segundos += 10;
+							if (segundos > 59) {
+								minutos += 1;
+								segundos = segundos % 59;
+							}
+
 							window.close();
 
 						}
@@ -740,6 +811,14 @@ int main()
 						//------------------ Verificar final -----------------------
 						if (numeroNodoActual == filas * columnas && cambiar == true) {
 
+							nivelactual++;
+
+							segundos += 10;
+							if (segundos > 59) {
+								minutos += 1;
+								segundos = segundos % 59;
+							}
+
 							window.close();
 
 						}
@@ -759,17 +838,18 @@ int main()
 			float posAY = 0.f;
 			float conta2 = 0;
 
-			float tamañoGeneral = 20;
+			float tamañoGeneral1 = (window.getSize().x / filas/2);
+			float tamañoGeneral2 = (window.getSize().y / columnas/2);
 
 
 
 			for (int i = 1; i < filas * columnas + 1; i++) {
-				posX = conta * (tamañoGeneral * 2); // tamañoGeneral * 2
+				posX = conta * (tamañoGeneral1 * 2); // tamañoGeneral * 2
 
 				//----------------- Dibujar los vertices -----------
 				sf::RectangleShape rectangleNodo(sf::Vector2f(120.f, 50.f));
-				float sizeX1 = tamañoGeneral;
-				float sizeY1 = tamañoGeneral;
+				float sizeX1 = tamañoGeneral1;
+				float sizeY1 = tamañoGeneral2;
 
 				rectangleNodo.setSize(sf::Vector2f(sizeX1, sizeY1)); // tamañoGeneral
 				rectangleNodo.setPosition(posX, posY);
@@ -860,7 +940,7 @@ int main()
 				conta += 1;
 
 				if (i % columnas == 0 && i != 0) {
-					posY += tamañoGeneral * 2; //tamañoGeneral * 2
+					posY += tamañoGeneral2 * 2; //tamañoGeneral * 2
 					conta = 0;
 				}
 			}
@@ -872,10 +952,11 @@ int main()
 			//------------------------ Dibujar al jugador y eso --------------------------
 			sf::RectangleShape rectangleJugador(sf::Vector2f(120.f, 50.f));
 
-			rectangleJugador.setSize(sf::Vector2f(tamañoGeneral, tamañoGeneral));
+			rectangleJugador.setSize(sf::Vector2f(tamañoGeneral1, tamañoGeneral2));
 			rectangleJugador.setFillColor(sf::Color(255, 0, 255));
 			rectangleJugador.setPosition(jugador.getposX(), jugador.getposY());
 			window.draw(rectangleJugador);
+			//window.draw(nuevoTexto);
 
 			// Clear screen
 			//window.clear();
@@ -890,5 +971,9 @@ int main()
 		filas += 1;
 		columnas += 1;
 
+		optimizador += 2.5;
+
 	}
+
+	
 }

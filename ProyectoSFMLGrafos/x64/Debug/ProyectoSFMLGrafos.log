@@ -1,6 +1,20 @@
 ﻿  Main.cpp
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(72,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(133,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(582,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(583,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-  ProyectoSFMLGrafos.vcxproj -> C:\Users\h\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(72,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(133,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(587,24): warning C4244: 'inicializando': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(841,26): warning C4244: 'inicializando': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(842,26): warning C4244: 'inicializando': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\Main.cpp(974,21): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+  ProyectoSFMLGrafos.vcxproj -> C:\Users\araya\github\Proyecto-2-ED\ProyectoSFMLGrafos\x64\Debug\ProyectoSFMLGrafos.exe

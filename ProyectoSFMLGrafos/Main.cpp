@@ -525,23 +525,16 @@ Grafo inicializarGrafo(Grafo nuevoGrafo, int filas, int columnas) {
 
 int main()
 {
-	Grafo nuevoGrafo = Grafo();
-	Jugador jugador = Jugador();
 
-	int filas;
-	int columnas;
+	cout << "Escriba 1 si quiere usar el algoritmo de profundidad modificado" << endl;
+	cout << "Escriba 2 si quiere usar el algoritmo de Prim modificado" << endl;
 
-	cout << "Ingrese el numero de filas ";
-	cin >> filas;
 
-	cout << "\nIngrese el numero de columnas ";
-	cin >> columnas;
+	string opcion = "0";
 
-	int conta = 1;
+	cin >> opcion;
 
 	//---------------- Inicializar las vertices ----------------
-
-	nuevoGrafo = inicializarGrafo(nuevoGrafo, filas, columnas);
 
 	//cout << "El size es: " << nuevoGrafo.tamano() << endl;
 
@@ -549,335 +542,353 @@ int main()
 	//busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
 	//nuevoGrafo.ListaAdyacencia();
 
-	nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
+	
 	//---------------------------------------------------
 	//---------------------------------------------------
 	//---------------------------------------------------
 
 	// Create the main window
 
-	int** MatrizConecciones = nullptr;
-	int** MatrizRutas = nullptr;
-	int cantidadNodos = filas * columnas;
-
-	crearMatriz(MatrizConecciones, cantidadNodos);
-	iniciarMatrizConecciones(MatrizConecciones, nuevoGrafo, cantidadNodos);
-
-	crearMatriz(MatrizRutas, cantidadNodos);
-	iniciarMatrizRutas(MatrizRutas, cantidadNodos);
-	algoritmoFloyd(MatrizConecciones, MatrizRutas, cantidadNodos);
-
-	/*for (int i = 0; i < cantidadNodos; i++) {
-		for (int j = 0; j < cantidadNodos; j++) {
-			cout << MatrizRutas[i][j] << "  ";
-		}
-		cout << endl;
-	}*/
-
-
-	sf::RenderWindow window(sf::VideoMode(700, 700), "SFML window");
-
-
-	float tamañoGeneral = 20;
-	float sizeX2 = (window.getSize().x) / (filas * 1.50);
-	float sizeY2 = (window.getSize().y) / (columnas * 1.30);
-
-	int numeroNodoActual = 1;
-
-	bool marcados = false;
-
-	Dlinkedlist<float> listaPosicionesX;
-	Dlinkedlist<float> listaPosicionesY;
-
-	float numeroDistancia = tamañoGeneral * 2;
-
-	bool cambiar = true;
+	bool gameOver = false;
 
 	// Start the game loop
-	while (window.isOpen())
-	{
-		// Process events
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			// Close window: exit
-			if (event.type == sf::Event::Closed)
-				window.close();
-
-			if (event.type == sf::Event::KeyPressed)
-			{
-
-				if (event.key.code == sf::Keyboard::Left) {
-
-					Vertice* vertice = nuevoGrafo.GetVertice(to_string(numeroNodoActual));
-
-					Dlinkedlist<Arista*>* listaAristas = nuevoGrafo.GetVertice(to_string(numeroNodoActual))->getlistaArcos();
 
 
-					for (listaAristas->gotoStart(); !listaAristas->atEnd(); listaAristas->next()) {
-						Arista* arco = listaAristas->getElement();
+	int filas;
+	int columnas;
 
-						Vertice* verticeVecino = arco->getVerticeady();
+	filas = 10;
+	columnas = 10;
 
-						float posX2 = verticeVecino->getposX();
-						float posY2 = verticeVecino->getposY();
-			
+	int conta = 1;
 
-						if (posX2 == jugador.getposX() - numeroDistancia && posY2 == jugador.getposY()) {
-
-							numeroNodoActual -= 1;
-							jugador.setposX(jugador.getposX() - numeroDistancia);
-						}
-					}
-
-	
-				}
-
-				else if (event.key.code == sf::Keyboard::Right) {
-
-					Vertice* vertice = nuevoGrafo.GetVertice(to_string(numeroNodoActual));
-
-					Dlinkedlist<Arista*>* listaAristas = nuevoGrafo.GetVertice(to_string(numeroNodoActual))->getlistaArcos();
+	int puntuacion = 0;
 
 
-					for (listaAristas->gotoStart(); !listaAristas->atEnd(); listaAristas->next()) {
-						Arista* arco = listaAristas->getElement();
+	while (!gameOver) {
+		Grafo nuevoGrafo = Grafo();
+		Jugador jugador = Jugador();
 
-						Vertice* verticeVecino = arco->getVerticeady();
+		nuevoGrafo = inicializarGrafo(nuevoGrafo, filas, columnas);
 
-						float posX2 = verticeVecino->getposX();
-						float posY2 = verticeVecino->getposY();
-
-						if (posX2 == jugador.getposX() + numeroDistancia && posY2 == jugador.getposY()) {
-
-							
-							numeroNodoActual += 1;
-							jugador.setposX(jugador.getposX() + numeroDistancia);
-						}
-					}
-					
-					//------------------ Verificar final -----------------------
-					if (numeroNodoActual == filas * columnas && cambiar == true) {
-						cout << "Fin del juego";
-
-						cambiar = false;
-
-						jugador.setposX(0);
-						jugador.setposY(0);
-
-						nuevoGrafo.setListaArcos();
-
-
-						Grafo nuevoGrafo2 = Grafo();
-
-						nuevoGrafo2 = inicializarGrafo(nuevoGrafo2, filas, columnas);
-
-						for (int i = 1; i < filas * columnas; i++) {
-							Vertice* vertice = nuevoGrafo.GetVertice(to_string(i));
-
-
-							vertice = new Vertice();
-
-						}
-
-						nuevoGrafo = Grafo();
-
-						nuevoGrafo = PrimModificado(nuevoGrafo2, filas, columnas);
-
-						numeroNodoActual = 1;
-
-						cambiar = true;
-
-						marcados = false;
-
-					}
-
-
-				}
-
-				else if (event.key.code == sf::Keyboard::Up)
-				{
-					Vertice* vertice = nuevoGrafo.GetVertice(to_string(numeroNodoActual));
-
-					Dlinkedlist<Arista*>* listaAristas = nuevoGrafo.GetVertice(to_string(numeroNodoActual))->getlistaArcos();
-
-
-					for (listaAristas->gotoStart(); !listaAristas->atEnd(); listaAristas->next()) {
-						Arista* arco = listaAristas->getElement();
-
-						Vertice* verticeVecino = arco->getVerticeady();
-
-						float posX2 = verticeVecino->getposX();
-						float posY2 = verticeVecino->getposY();
-
-						if (posX2 == jugador.getposX() && posY2 == jugador.getposY() - numeroDistancia) {
-							
-							
-							numeroNodoActual -= columnas;
-							jugador.setposY(jugador.getposY() - numeroDistancia);
-						}
-					}	
-					
-				}
-
-				else if (event.key.code == sf::Keyboard::Down)
-				{
-
-					Vertice* vertice = nuevoGrafo.GetVertice(to_string(numeroNodoActual));
-
-					Dlinkedlist<Arista*>* listaAristas = nuevoGrafo.GetVertice(to_string(numeroNodoActual))->getlistaArcos();
-
-
-					for (listaAristas->gotoStart(); !listaAristas->atEnd(); listaAristas->next()) {
-						Arista* arco = listaAristas->getElement();
-
-						Vertice* verticeVecino = arco->getVerticeady();
-
-						float posX2 = verticeVecino->getposX();
-						float posY2 = verticeVecino->getposY();
-
-						if (posX2 == jugador.getposX() && posY2 == jugador.getposY() + numeroDistancia) {
-							
-							
-							numeroNodoActual += columnas;
-							jugador.setposY(jugador.getposY() + numeroDistancia);
-						}
-					}
-
-					
-					
-				}
-
-			}
+		if (opcion == "1") {
+			nuevoGrafo = busquedaProfundidadModificada(nuevoGrafo, filas, columnas);
+		}
+		else {
+			nuevoGrafo = PrimModificado(nuevoGrafo, filas, columnas);
 		}
 
-		//--------- variables para los nodos
-		float posY = 0.f;
-		float posX = 0.f;
-		float conta = 0;
+		sf::RenderWindow window(sf::VideoMode(700, 700), "SFML window");
 
-		//--------- variables para las aristas
-		float posAX = 0.f;
-		float posAY = 0.f;
-		float conta2 = 0;
 
 		float tamañoGeneral = 20;
+		float sizeX2 = (window.getSize().x) / (filas * 1.50);
+		float sizeY2 = (window.getSize().y) / (columnas * 1.30);
+
+		int numeroNodoActual = 1;
+
+		bool marcados = false;
+
+		Dlinkedlist<float> listaPosicionesX;
+		Dlinkedlist<float> listaPosicionesY;
+
+		float numeroDistancia = tamañoGeneral * 2;
+
+		bool cambiar = true;
 
 
 
-		for (int i = 1; i < filas * columnas + 1; i++) {
-			posX = conta * (tamañoGeneral * 2); // tamañoGeneral * 2
+		bool creado = false;
 
-			//----------------- Dibujar los vertices -----------
-			sf::RectangleShape rectangleNodo(sf::Vector2f(120.f, 50.f));
-			float sizeX1 = tamañoGeneral;
-			float sizeY1 = tamañoGeneral;
-
-			rectangleNodo.setSize(sf::Vector2f(sizeX1, sizeY1)); // tamañoGeneral
-			rectangleNodo.setPosition(posX, posY);
-			listaPosicionesX.append(posX);
-			listaPosicionesY.append(posY);
-			//rectangleNodo.setOutlineThickness(1);
-			rectangleNodo.setOutlineColor(sf::Color(0, 0, 255));
+		nuevoGrafo = inicializarGrafo(nuevoGrafo, filas, columnas);
 
 
-			Vertice* primerNodo = nuevoGrafo.GetVertice(to_string(i));
-			if (i != 0 && marcados == false && cambiar == true) {
-				primerNodo->setposX(posX);
-				primerNodo->setposY(posY);
+		while (window.isOpen())
+		{
+			// Process events
+			sf::Event event;
+			while (window.pollEvent(event))
+			{
+				// Close window: exit
+				if (event.type == sf::Event::Closed)
+					window.close();
 
-				if (i == filas * columnas) {
-					
-					marcados = true;
+				if (event.type == sf::Event::KeyPressed)
+				{
+
+					if (event.key.code == sf::Keyboard::Left) {
+
+						Vertice* vertice = nuevoGrafo.GetVertice(to_string(numeroNodoActual));
+
+						Dlinkedlist<Arista*>* listaAristas = nuevoGrafo.GetVertice(to_string(numeroNodoActual))->getlistaArcos();
+
+
+						for (listaAristas->gotoStart(); !listaAristas->atEnd(); listaAristas->next()) {
+							Arista* arco = listaAristas->getElement();
+
+							Vertice* verticeVecino = arco->getVerticeady();
+
+							float posX2 = verticeVecino->getposX();
+							float posY2 = verticeVecino->getposY();
+
+
+							if (posX2 == jugador.getposX() - numeroDistancia && posY2 == jugador.getposY()) {
+
+								numeroNodoActual -= 1;
+								jugador.setposX(jugador.getposX() - numeroDistancia);
+							}
+						}
+
+						//------------------ Verificar final -----------------------
+						if (numeroNodoActual == filas * columnas && cambiar == true) {
+
+							window.close();
+
+						}
+
+					}
+
+					else if (event.key.code == sf::Keyboard::Right) {
+
+						Vertice* vertice = nuevoGrafo.GetVertice(to_string(numeroNodoActual));
+
+						Dlinkedlist<Arista*>* listaAristas = nuevoGrafo.GetVertice(to_string(numeroNodoActual))->getlistaArcos();
+
+
+						for (listaAristas->gotoStart(); !listaAristas->atEnd(); listaAristas->next()) {
+							Arista* arco = listaAristas->getElement();
+
+							Vertice* verticeVecino = arco->getVerticeady();
+
+							float posX2 = verticeVecino->getposX();
+							float posY2 = verticeVecino->getposY();
+
+							if (posX2 == jugador.getposX() + numeroDistancia && posY2 == jugador.getposY()) {
+
+
+								numeroNodoActual += 1;
+								jugador.setposX(jugador.getposX() + numeroDistancia);
+							}
+						}
+
+						//------------------ Verificar final -----------------------
+						if (numeroNodoActual == filas * columnas && cambiar == true) {
+
+							window.close();
+
+						}
+
+
+					}
+
+					else if (event.key.code == sf::Keyboard::Up)
+					{
+						Vertice* vertice = nuevoGrafo.GetVertice(to_string(numeroNodoActual));
+
+						Dlinkedlist<Arista*>* listaAristas = nuevoGrafo.GetVertice(to_string(numeroNodoActual))->getlistaArcos();
+
+
+						for (listaAristas->gotoStart(); !listaAristas->atEnd(); listaAristas->next()) {
+							Arista* arco = listaAristas->getElement();
+
+							Vertice* verticeVecino = arco->getVerticeady();
+
+							float posX2 = verticeVecino->getposX();
+							float posY2 = verticeVecino->getposY();
+
+							if (posX2 == jugador.getposX() && posY2 == jugador.getposY() - numeroDistancia) {
+
+
+								numeroNodoActual -= columnas;
+								jugador.setposY(jugador.getposY() - numeroDistancia);
+							}
+						}
+
+						//------------------ Verificar final -----------------------
+						if (numeroNodoActual == filas * columnas && cambiar == true) {
+
+							window.close();
+
+						}
+
+					}
+
+					else if (event.key.code == sf::Keyboard::Down)
+					{
+
+						Vertice* vertice = nuevoGrafo.GetVertice(to_string(numeroNodoActual));
+
+						Dlinkedlist<Arista*>* listaAristas = nuevoGrafo.GetVertice(to_string(numeroNodoActual))->getlistaArcos();
+
+
+						for (listaAristas->gotoStart(); !listaAristas->atEnd(); listaAristas->next()) {
+							Arista* arco = listaAristas->getElement();
+
+							Vertice* verticeVecino = arco->getVerticeady();
+
+							float posX2 = verticeVecino->getposX();
+							float posY2 = verticeVecino->getposY();
+
+							if (posX2 == jugador.getposX() && posY2 == jugador.getposY() + numeroDistancia) {
+
+
+								numeroNodoActual += columnas;
+								jugador.setposY(jugador.getposY() + numeroDistancia);
+							}
+						}
+
+						//------------------ Verificar final -----------------------
+						if (numeroNodoActual == filas * columnas && cambiar == true) {
+
+							window.close();
+
+						}
+
+					}
+
+				}
+			}
+
+			//--------- variables para los nodos
+			float posY = 0.f;
+			float posX = 0.f;
+			float conta = 0;
+
+			//--------- variables para las aristas
+			float posAX = 0.f;
+			float posAY = 0.f;
+			float conta2 = 0;
+
+			float tamañoGeneral = 20;
+
+
+
+			for (int i = 1; i < filas * columnas + 1; i++) {
+				posX = conta * (tamañoGeneral * 2); // tamañoGeneral * 2
+
+				//----------------- Dibujar los vertices -----------
+				sf::RectangleShape rectangleNodo(sf::Vector2f(120.f, 50.f));
+				float sizeX1 = tamañoGeneral;
+				float sizeY1 = tamañoGeneral;
+
+				rectangleNodo.setSize(sf::Vector2f(sizeX1, sizeY1)); // tamañoGeneral
+				rectangleNodo.setPosition(posX, posY);
+				listaPosicionesX.append(posX);
+				listaPosicionesY.append(posY);
+				//rectangleNodo.setOutlineThickness(1);
+				rectangleNodo.setOutlineColor(sf::Color(0, 0, 255));
+
+
+				Vertice* primerNodo = nuevoGrafo.GetVertice(to_string(i));
+				if (i != 0 && marcados == false && cambiar == true) {
+					primerNodo->setposX(posX);
+					primerNodo->setposY(posY);
+
+					if (i == filas * columnas) {
+
+						marcados = true;
+					}
+
 				}
 
-			}
 
-
-			//--------- Nodo de entrada --------------
-			if (primerNodo->getNombre() == "1") {
-				rectangleNodo.setFillColor(sf::Color(255, 0, 0));
-			}
-			//--------- Nodo de salida ---------------
-			else if (primerNodo->getNombre() == to_string(filas * columnas)) {
-				rectangleNodo.setFillColor(sf::Color(0, 255, 0));
-			}
-			//--------- Nodos de en medio ------------
-			else {
-				rectangleNodo.setFillColor(sf::Color(0, 0, 255));
-			}
-
-			//---------------- Dibujar los arcos --------------
-			Dlinkedlist<Arista*>* listaArcosVecinos = nuevoGrafo.GetVertice(to_string(i))->getlistaArcos();
-
-			for (int j = 0; j < listaArcosVecinos->getSize(); j++) {
-				sf::RectangleShape rectangleArcoVecino(sf::Vector2f(120.f, 50.f));
-
-				rectangleArcoVecino.setSize(sf::Vector2f(sizeX1, sizeY1)); // tamañoGeneral
-
-				listaArcosVecinos->gotoPos(j);
-				Arista* aristaVecina = listaArcosVecinos->getElement();
-				Vertice* vecino = aristaVecina->getVerticeady();
-				rectangleArcoVecino.setFillColor(sf::Color(255, 255, 255));
-
-				if (aristaVecina->getOrigen()->getNombre() == primerNodo->getNombre() && aristaVecina->getVerticeady()->getNombre() == vecino->getNombre()) {
-
-					//---------- Dibujarlo arriba ----
-					if (stoi(vecino->getNombre()) == i - columnas) {
-						rectangleArcoVecino.setPosition(posX, posY - sizeY1); //tamañoGeneral
-						window.draw(rectangleArcoVecino);
-					}
-
-					//---------- Dibujarlo abajo ----
-					else if (stoi(vecino->getNombre()) == i + columnas) {
-						rectangleArcoVecino.setPosition(posX, posY + sizeY1); //tamañoGeneral
-						window.draw(rectangleArcoVecino);
-					}
-
-					//---------- Dibujarlo izquierda ----
-					else if (stoi(vecino->getNombre()) == i - 1) {
-						rectangleArcoVecino.setPosition(posX - sizeX1, posY); //tamañoGeneral
-						window.draw(rectangleArcoVecino);
-					}
-
-					//---------- Dibujarlo derecha ----
-					else if (stoi(vecino->getNombre()) == i + 1) {
-						rectangleArcoVecino.setPosition(posX + sizeX1, posY); //tamañoGeneral
-						window.draw(rectangleArcoVecino);
-					}
+				//--------- Nodo de entrada --------------
+				if (primerNodo->getNombre() == "1") {
+					rectangleNodo.setFillColor(sf::Color(255, 0, 0));
+				}
+				//--------- Nodo de salida ---------------
+				else if (primerNodo->getNombre() == to_string(filas * columnas)) {
+					rectangleNodo.setFillColor(sf::Color(0, 255, 0));
+				}
+				//--------- Nodos de en medio ------------
+				else {
+					rectangleNodo.setFillColor(sf::Color(0, 0, 255));
 				}
 
+				//---------------- Dibujar los arcos --------------
+				Dlinkedlist<Arista*>* listaArcosVecinos = nuevoGrafo.GetVertice(to_string(i))->getlistaArcos();
+
+				for (int j = 0; j < listaArcosVecinos->getSize(); j++) {
+					sf::RectangleShape rectangleArcoVecino(sf::Vector2f(120.f, 50.f));
+
+					rectangleArcoVecino.setSize(sf::Vector2f(sizeX1, sizeY1)); // tamañoGeneral
+
+					listaArcosVecinos->gotoPos(j);
+					Arista* aristaVecina = listaArcosVecinos->getElement();
+					Vertice* vecino = aristaVecina->getVerticeady();
+
+
+					if (aristaVecina->getOrigen()->getNombre() == primerNodo->getNombre() && aristaVecina->getVerticeady()->getNombre() == vecino->getNombre()) {
+
+						rectangleArcoVecino.setFillColor(sf::Color(0, 0, 255));
+
+						//---------- Dibujarlo arriba ----
+						if (stoi(vecino->getNombre()) == i - columnas) {
+							rectangleArcoVecino.setPosition(posX, posY - sizeY1); //tamañoGeneral
+							window.draw(rectangleArcoVecino);
+						}
+
+						//---------- Dibujarlo abajo ----
+						else if (stoi(vecino->getNombre()) == i + columnas) {
+							rectangleArcoVecino.setPosition(posX, posY + sizeY1); //tamañoGeneral
+							window.draw(rectangleArcoVecino);
+						}
+
+						//---------- Dibujarlo izquierda ----
+						else if (stoi(vecino->getNombre()) == i - 1) {
+							rectangleArcoVecino.setPosition(posX - sizeX1, posY); //tamañoGeneral
+							window.draw(rectangleArcoVecino);
+						}
+
+						//---------- Dibujarlo derecha ----
+						else if (stoi(vecino->getNombre()) == i + 1) {
+							rectangleArcoVecino.setPosition(posX + sizeX1, posY); //tamañoGeneral
+							window.draw(rectangleArcoVecino);
+						}
+
+					}
+					else {
+
+						rectangleArcoVecino.setFillColor(sf::Color(0, 0, 255));
+						window.draw(rectangleArcoVecino);
+					}
+
+				}
+
+				window.draw(rectangleNodo);
+
+				conta += 1;
+
+				if (i % columnas == 0 && i != 0) {
+					posY += tamañoGeneral * 2; //tamañoGeneral * 2
+					conta = 0;
+				}
 			}
 
-			window.draw(rectangleNodo);
 
-			conta += 1;
 
-			if (i % columnas == 0 && i != 0) {
-				posY += tamañoGeneral * 2; //tamañoGeneral * 2
-				conta = 0;
-			}
+
+
+			//------------------------ Dibujar al jugador y eso --------------------------
+			sf::RectangleShape rectangleJugador(sf::Vector2f(120.f, 50.f));
+
+			rectangleJugador.setSize(sf::Vector2f(tamañoGeneral, tamañoGeneral));
+			rectangleJugador.setFillColor(sf::Color(255, 0, 255));
+			rectangleJugador.setPosition(jugador.getposX(), jugador.getposY());
+			window.draw(rectangleJugador);
+
+			// Clear screen
+			//window.clear();
+			// Draw the sprite
+			//window.draw(sprite);
+			// Draw the string
+			//window.draw(text);
+			// Update the window
+			window.display();
 		}
-		
-		
+	
+		filas += 1;
+		columnas += 1;
 
-		
-
-		//------------------------ Dibujar al jugador y eso --------------------------
-		sf::RectangleShape rectangleJugador(sf::Vector2f(120.f, 50.f));
-
-		rectangleJugador.setSize(sf::Vector2f(tamañoGeneral, tamañoGeneral));
-		rectangleJugador.setFillColor(sf::Color(255, 0, 255));
-		rectangleJugador.setPosition(jugador.getposX(), jugador.getposY());
-		window.draw(rectangleJugador);
-
-		// Clear screen
-		//window.clear();
-		// Draw the sprite
-		//window.draw(sprite);
-		// Draw the string
-		//window.draw(text);
-		// Update the window
-		window.display();
 	}
 }

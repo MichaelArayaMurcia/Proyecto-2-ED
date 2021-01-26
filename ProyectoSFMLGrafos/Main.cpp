@@ -376,24 +376,9 @@ void iniciarMatrizRutas(int** &matriz, int cantidadNodos) {
 	}
 }
 
-int main()
-{
-	Grafo nuevoGrafo = Grafo();
-	Jugador jugador = Jugador();
-
-	int filas;
-	int columnas;
-
-	cout << "Ingrese el numero de filas ";
-	cin >> filas;
-
-	cout << "\nIngrese el numero de columnas ";
-	cin >> columnas;
-
+Grafo inicializarGrafo(Grafo nuevoGrafo, int filas, int columnas) {
 	int conta = 1;
-
-	//---------------- Inicializar las vertices ----------------
-
+	
 	for (int i = 0; i < filas; i++) {
 		for (int j = 0; j < columnas; j++) {
 			nuevoGrafo.InsertaVertice(to_string(conta));
@@ -401,7 +386,7 @@ int main()
 		}
 
 	}
-
+	
 	//---------- Poner las aristas de las esquinas ---------------------------
 	//---------- Esquina superior izquierda ----------------------------------
 	Vertice* vertice1 = nuevoGrafo.GetVertice(to_string(1));
@@ -533,6 +518,31 @@ int main()
 		contaCentro += 2;
 	}
 
+	return nuevoGrafo;
+
+}
+
+
+int main()
+{
+	Grafo nuevoGrafo = Grafo();
+	Jugador jugador = Jugador();
+
+	int filas;
+	int columnas;
+
+	cout << "Ingrese el numero de filas ";
+	cin >> filas;
+
+	cout << "\nIngrese el numero de columnas ";
+	cin >> columnas;
+
+	int conta = 1;
+
+	//---------------- Inicializar las vertices ----------------
+
+	nuevoGrafo = inicializarGrafo(nuevoGrafo, filas, columnas);
+
 	//cout << "El size es: " << nuevoGrafo.tamano() << endl;
 
 	//nuevoGrafo.ListaAdyacencia();
@@ -580,6 +590,8 @@ int main()
 	Dlinkedlist<float> listaPosicionesY;
 
 	float numeroDistancia = tamañoGeneral * 2;
+
+	bool cambiar = true;
 
 	// Start the game loop
 	while (window.isOpen())
@@ -644,6 +656,43 @@ int main()
 						}
 					}
 					
+					//------------------ Verificar final -----------------------
+					if (numeroNodoActual == filas * columnas && cambiar == true) {
+						cout << "Fin del juego";
+
+						cambiar = false;
+
+						jugador.setposX(0);
+						jugador.setposY(0);
+
+						nuevoGrafo.setListaArcos();
+
+
+						Grafo nuevoGrafo2 = Grafo();
+
+						nuevoGrafo2 = inicializarGrafo(nuevoGrafo2, filas, columnas);
+
+						for (int i = 1; i < filas * columnas; i++) {
+							Vertice* vertice = nuevoGrafo.GetVertice(to_string(i));
+
+
+							vertice = new Vertice();
+
+						}
+
+						nuevoGrafo = Grafo();
+
+						nuevoGrafo = PrimModificado(nuevoGrafo2, filas, columnas);
+
+						numeroNodoActual = 1;
+
+						cambiar = true;
+
+						marcados = false;
+
+					}
+
+
 				}
 
 				else if (event.key.code == sf::Keyboard::Up)
@@ -714,6 +763,8 @@ int main()
 
 		float tamañoGeneral = 20;
 
+
+
 		for (int i = 1; i < filas * columnas + 1; i++) {
 			posX = conta * (tamañoGeneral * 2); // tamañoGeneral * 2
 
@@ -729,12 +780,14 @@ int main()
 			//rectangleNodo.setOutlineThickness(1);
 			rectangleNodo.setOutlineColor(sf::Color(0, 0, 255));
 
+
 			Vertice* primerNodo = nuevoGrafo.GetVertice(to_string(i));
-			if (i != 0 && marcados == false) {
+			if (i != 0 && marcados == false && cambiar == true) {
 				primerNodo->setposX(posX);
 				primerNodo->setposY(posY);
 
 				if (i == filas * columnas) {
+					
 					marcados = true;
 				}
 
@@ -760,12 +813,12 @@ int main()
 			for (int j = 0; j < listaArcosVecinos->getSize(); j++) {
 				sf::RectangleShape rectangleArcoVecino(sf::Vector2f(120.f, 50.f));
 
-				rectangleArcoVecino.setSize(sf::Vector2f(sizeX1 , sizeY1)); // tamañoGeneral
+				rectangleArcoVecino.setSize(sf::Vector2f(sizeX1, sizeY1)); // tamañoGeneral
 
 				listaArcosVecinos->gotoPos(j);
 				Arista* aristaVecina = listaArcosVecinos->getElement();
 				Vertice* vecino = aristaVecina->getVerticeady();
-				rectangleArcoVecino.setFillColor(sf::Color(0, 0, 255));
+				rectangleArcoVecino.setFillColor(sf::Color(255, 255, 255));
 
 				if (aristaVecina->getOrigen()->getNombre() == primerNodo->getNombre() && aristaVecina->getVerticeady()->getNombre() == vecino->getNombre()) {
 
@@ -805,6 +858,8 @@ int main()
 				conta = 0;
 			}
 		}
+		
+		
 
 		
 

@@ -10,8 +10,32 @@ using namespace std;
 
 class Grafo
 {
+
+private:
 	Vertice* h; //Primer vertice del grafo
+
 public:
+
+	Grafo() {
+		Vertice* h = nullptr;
+	}
+
+	void setListaArcos() {
+		Vertice* aux;
+		aux = h;
+		while (aux != nullptr) {
+	
+			Dlinkedlist<Arista*>* listaArcos = new Dlinkedlist<Arista*>();
+
+			//aux->setListaArcos(listaArcos);
+
+			aux->getlistaArcos()->clear();
+
+			aux = aux->sig;
+
+		}
+	}
+
 	void Inicializa() {
 		h = nullptr;
 	}
@@ -204,5 +228,6 @@ public:
 	Vertice* NodoActual() {
 		return h;
 	};
+
 };
 #endif

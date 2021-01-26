@@ -33,6 +33,10 @@ public:
 
 	~Vertice() {}
 
+	void setListaArcos(Dlinkedlist<Arista*>* nuevaLista) {
+		listaArcos = nuevaLista;
+	}
+
 	Vertice* getVerticesig() {
 		return sig;
 	}
